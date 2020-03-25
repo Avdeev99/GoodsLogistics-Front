@@ -1,0 +1,124 @@
+﻿@using GoodsLogistics.Localization.Resources
+@model GoodsLogistics.ViewModels.DTO.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+@section Styles
+    {
+    <link rel="stylesheet" type="text/css" href="~/css/daterangepicker.css" />
+}
+
+<section>
+    <div class="container signUp_holder">
+        <div class="row  ">
+            <div class="col-lg-12">
+                <div class="signUp_holder_title">Sign Up</div>
+            </div>
+        </div>
+        @using (Html.BeginForm("Register", "Auth", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="signUp_holder_information">
+                        <div class="form-group">
+                            @Html.Label(Resources.CompanyName)
+                            @Html.TextBoxFor(m => m.Name, new { @class = "input", placeholder = Resources.EnterCompanyName, required = "required" })
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email)
+                            @Html.TextBoxFor(m => m.Email, new { @class = "input", placeholder = Resources.EnterEmail, required = "required" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        @Html.Label(Resources.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "input", placeholder = Resources.EnterPassword, required = "required" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(Resources.ConfirmPassword)
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input", placeholder = Resources.ConfirmPassword, required = "required" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="login_button_holder">
+                        <input type="submit" class="button w-100" value=@Resources.Register>
+                    </div>
+                    <div class="exist_account">
+                        <span class="no_account_text">@Resources.ExistAccount </span>
+                        @Html.ActionLink(Resources.Login, "Login", new { returnUrl = Model.ReturnUrl },
+                            new { @class = "no_account_register" })
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</section>
+
+
+@section Scripts {
+    <script src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/momentMin.js"></script>
+    <script src="~/js/daterangepicker.js"></script>
+
+    <script>
+        $('#registerDatePicker').daterangepicker({
+            "singleDatePicker": true,
+            "showDropdowns": true,
+            "maxYear": @DateTime.UtcNow.Year,
+            "locale": {
+                "format": "DD/MM/YYYY",
+                "separator": " - ",
+                "applyLabel": "Apply",
+                "cancelLabel": "Cancel",
+                "fromLabel": "From",
+                "toLabel": "To",
+                "customRangeLabel": "Custom",
+                "weekLabel": "W",
+                "daysOfWeek": [
+                    "Su",
+                    "Mo",
+                    "Tu",
+                    "We",
+                    "Th",
+                    "Fr",
+                    "Sa"
+                ],
+                "monthNames": [
+                    "January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December"
+                ],
+                "firstDay": 1
+            },
+            "startDate": new Date(),
+            "opens": "center"
+        }, function (start, end, label) {
+            console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+        });
+    </script>
+
+    <script>
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                return this.optional(element) || moment(value, "DD/MM/YYYY", true).isValid();
+            }
+        });
+    </script>
+}

@@ -1,0 +1,115 @@
+﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
+@using GoodsLogistics.Localization.Resources
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@section Styles
+    {
+    <link rel="stylesheet" href="~/css/homeSlider.css" />
+}
+
+
+<section>
+    <div class="sliderAndForm_holder">
+        <div class="slider">
+            <div class="slide current">
+                <div class="content">
+                    <h1>Goods Logistics</h1>
+                    <p>
+                        Text
+                    </p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="content">
+                    <h1>Products Rise</h1>
+                    <p>
+                        Text
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="prev"><i class="fas fa-arrow-left"></i></button>
+            <button id="next"><i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+</section>
+
+<section class="infoBlocks_section">
+    <div class="container infoBlocks">
+        <div class="infoblocks_title">@Resources.Advantages</div>
+        <div class="d-flex infoBlocks_holder">
+            <div class="infoBlock">
+
+                <div class="infoBlock_content">
+                    <i class="infoBlock_content_icon fas fa-recycle"></i>
+                    <h4 class="infoBlock_content_title">Text</h4>
+                    <p class="infoBlock__content_text">Text </p>
+                </div>
+
+            </div>
+            <div class="infoBlock">
+                <div class="infoBlock_content">
+
+                    <i class="infoBlock_content_icon fas fa-utensils"></i>
+                    <h4 class="infoBlock_content_title">Text</h4>
+                    <p class="infoBlock__content_text">
+                        Text
+                    </p>
+                </div>
+            </div>
+            <div class="infoBlock">
+                <div class="infoBlock_content">
+                    <i class="infoBlock_content_icon fas fa-smog"></i>
+                    <h4 class="infoBlock_content_title">Text</h4>
+                    <p class="infoBlock__content_text">Text </p>
+                </div>
+            </div>
+            <div class="infoBlock">
+                <div class="infoBlock_content">
+                    <i class="infoBlock_content_icon fas fa-pepper-hot"></i>
+                    <h4 class="infoBlock_content_title">Text</h4>
+                    <p class="infoBlock__content_text">Text </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="paralax_section">Text</div>
+</section>
+
+<section class="advertisement_holder">
+    <div class="container-fluid">
+        <div class="advertisement_section">
+            <div class="row ">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-4 advertisement_title_holder">
+                    <div class="">
+                        <div class="advertisement_firstTitle">Text</div>
+                        <div class="advertisement_secondTitle">Text</div>
+                        <div class="advertisement_content">
+                            Text
+                        </div>
+                        <div class="advertisement_apply"><a href="#header" class="btn button">Text</a></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="avdertisement_img"></div>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+    {
+    <script src="js/homeSlider.js"></script>
+}

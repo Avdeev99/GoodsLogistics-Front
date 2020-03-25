@@ -1,0 +1,14 @@
+﻿using GoodsLogistics.Services.Data.Services;
+using GoodsLogistics.Services.Data.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace GoodsLogistics.DI.Projects
+{
+    internal static class ServicesDataDiConfigurator
+    {
+        public static void Configure(IServiceCollection services)
+        {
+            services.AddScoped<IAuthService, AuthService>();
+        }
+    }
+}

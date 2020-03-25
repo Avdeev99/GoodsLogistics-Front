@@ -1,0 +1,57 @@
+﻿@*@using ProductsRise.Web.App_LocalResources
+<div class="account_menu">
+    @{
+        if (User.IsInRole("Admin"))
+        {
+            <div class="account_menu_item">@Html.ActionLink(Resources.AdminPanel, "AdminPanel", "Manage")</div>
+        }
+
+        if (User.IsInRole("Manager"))
+        {
+            <div class="account_menu_item">@Html.ActionLink(Resources.RequestsList, "GetAllRequests", "Manage")</div>
+        }
+    }
+    <div class="account_menu_item">@Html.ActionLink(Resources.PersonalData, "Index", "Manage")</div>
+    <div class="account_menu_item">@Html.ActionLink(Resources.ChangePassword, "ChangePassword", "Manage")</div>
+    <div class="account_menu_item">@Html.ActionLink(Resources.MyRequests, "RequestsUserList", "Manage")</div>
+    <div class="account_menu_item">
+        @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Exit</a>
+        }
+    </div>
+</div>
+
+
+
+<script src="~/js/jquery.js"></script>
+
+<script>
+
+    $(function () {
+
+        var pathname_url = window.location.pathname;
+        $(".account_menu .account_menu_item").each(function () {
+
+            var link = $(this).find("a").attr("href");
+            var adminLink = null;
+
+            if (link == "/Manage/AdminPanel") {
+                adminLink = $(this);
+            }
+
+            if (pathname_url == link) {
+
+                $(this).addClass('account_menu_item_selected');
+            }
+
+            if ((pathname_url.includes("Product") || pathname_url.includes("Genre")) && adminLink != null) {
+                adminLink.addClass('account_menu_item_selected');
+            }
+
+        });
+
+    });
+
+</script>*@

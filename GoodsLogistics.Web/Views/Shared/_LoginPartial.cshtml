@@ -1,0 +1,13 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    using (Html.BeginForm("Logout", "Auth", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ActionLink(User.Identity.Name, "Index", "Manage")
+    }
+}
+else
+{
+    <a href="@Url.Action("Login", "Auth")"><i class="pe-7s-users"></i></a>
+}

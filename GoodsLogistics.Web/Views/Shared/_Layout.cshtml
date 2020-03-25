@@ -1,0 +1,91 @@
+﻿@using GoodsLogistics.Localization.Resources
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/normalize.css">
+    <link rel="stylesheet" href="~/css/main.css">
+    <link rel="stylesheet" type="~/text/css" href="css/daterangepicker.css" />
+    <link rel="stylesheet" href="~/Icons/Icon-font-7-stroke-PIXEDEN-v-1.2.0/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="~/Icons/fontawesome-free-5.9.0-web/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+    @RenderSection("Styles", required: false)
+</head>
+
+<body>
+    <div class="footer_position">
+
+        <header id="header">
+            <div class="header_bg">
+                <div class="container">
+                    <div class="row justify-content-between header">
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="row menu">
+                                <div class="col-lg-2 col-sm-2">
+                                    <a href="@Url.Action("Index", "Home")">
+                                        <i class="menu_logo_icon fas fa-recycle"></i>
+                                    </a>
+                                </div>
+                                <div class="col-lg-4 col-sm-4 menu__items">@Html.ActionLink(Resources.Home, "Index", "Home")</div>
+                                <div class="col-lg-4 col-sm-4 menu__items"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-sm-5 d-flex justify-content-end">
+                            <div class="menu__items login_icon">@Html.Partial("_LoginPartial")</div>
+                            <div class="menu__items">
+                                @await Html.PartialAsync("_LanguagePartial")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        @RenderBody()
+
+    </div>
+
+
+
+    <footer id="footer">
+        <div class="footercontent">
+            @Resources.FooterContent
+        </div>
+    </footer>
+
+
+    <script src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/momentMin.js"></script>
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/smoothScrolling.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+    <script>
+
+        $(function () {
+
+            var pathname_url = window.location.pathname;
+            var href_url = window.location.href;
+            $(".menu .menu__items").each(function () {
+                var link = $(this).find("a").attr("href");
+                if (pathname_url == link || href_url == link) {
+
+                    $(this).find("a").addClass('selected_menu__items');
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+
+</body>
+</html>
