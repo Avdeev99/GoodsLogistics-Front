@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Auth\" />
+    <Folder Include="Views\Account\" />
     <Folder Include="wwwroot\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>

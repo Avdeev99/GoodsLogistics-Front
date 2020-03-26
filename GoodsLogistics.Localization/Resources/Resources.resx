@@ -120,11 +120,17 @@
   <data name="Advantages" xml:space="preserve">
     <value>ADVANTAGES</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change password</value>
+  </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Company name</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>ConfirmPassword</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Current Password</value>
   </data>
   <data name="EmailType" xml:space="preserve">
     <value>This field must be email type field</value>
@@ -174,6 +180,9 @@
   <data name="MinLength6Symbols" xml:space="preserve">
     <value>This field must be at least 6 symbols.</value>
   </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
   <data name="NoAccount" xml:space="preserve">
     <value>Don't have an account?</value>
   </data>
@@ -186,10 +195,16 @@
   <data name="PasswordWasChangedSuccessfully" xml:space="preserve">
     <value>Password was changed successfully</value>
   </data>
+  <data name="PersonalData" xml:space="preserve">
+    <value>Personal data</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>This field is required.</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
   </data>
 </root>

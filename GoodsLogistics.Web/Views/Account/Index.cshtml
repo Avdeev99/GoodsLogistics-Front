@@ -1,0 +1,53 @@
+﻿@using GoodsLogistics.Localization.Resources
+@model GoodsLogistics.Models.DTO.UserCompany.UserCompanyModel
+
+@{
+    ViewBag.Title = "Manage";
+}
+
+
+@section Styles
+{
+    <link rel="stylesheet" type="text/css" href="~/css/daterangepicker.css" />
+}
+
+
+<section>
+    <div class="container">
+        <div class="row account_holder">
+            <div class="col-lg-4 account_menu_holder">
+                @Html.Partial("_AccountMenuPartial")
+            </div>
+            <div class="col-lg-8 account_holder_content">
+
+                @using (Html.BeginForm("Index", "Account", FormMethod.Post, new { role = "form" }))
+                {
+                    <div class="form-group">
+                        @Html.Label(Resources.CompanyName)
+                        @Html.TextBoxFor(m => m.Name, new { @class = "input", placeholder = Resources.EnterCompanyName, required = "required" })
+                        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, new { @class = "input", placeholder = Resources.EnterEmail, @readonly = "readonly" })
+                    </div>
+
+                    <div class="login_button_holder mb15">
+                        <input type="submit" class="button" value="@Resources.Submit">
+                    </div>
+                }
+
+                <div class="success_status">@ViewBag.Status</div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+    <script src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/momentMin.js"></script>
+}
+
+

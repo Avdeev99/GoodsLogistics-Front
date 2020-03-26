@@ -120,11 +120,17 @@
   <data name="Advantages" xml:space="preserve">
     <value>ПЕРЕВАГИ</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Змінити пароль</value>
+  </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Назва компанії</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Підтвердіть пароль</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Поточний пароль</value>
   </data>
   <data name="EmailType" xml:space="preserve">
     <value>Це поле повинно бути відповідним до Email</value>
@@ -174,6 +180,9 @@
   <data name="MinLength6Symbols" xml:space="preserve">
     <value>Це поле повинно бути мінімум 6 символи.</value>
   </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Новий пароль</value>
+  </data>
   <data name="NoAccount" xml:space="preserve">
     <value>У Вас ще немає облікового запису?</value>
   </data>
@@ -186,10 +195,16 @@
   <data name="PasswordWasChangedSuccessfully" xml:space="preserve">
     <value>Пароль успішно змінено</value>
   </data>
+  <data name="PersonalData" xml:space="preserve">
+    <value>Особисті дані</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Реєстрація</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>Це поле обов'язкове для заповнення.</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Підтвердити</value>
   </data>
 </root>

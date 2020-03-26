@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
+using GoodsLogistics.Auth.Extensions;
 using GoodsLogistics.Models.DTO.UserCompany;
 using GoodsLogistics.Services.Data.Services.Interfaces;
 using GoodsLogistics.ViewModels.DTO;
@@ -42,10 +43,23 @@ namespace GoodsLogistics.Web.Controllers
             }
 
             var loginRequestModel = _mapper.Map<UserCompanyLoginRequestModel>(loginViewModel);
-            var token = await _authService.LoginAsync(loginRequestModel);
+            var authResult = await _authService.LoginAsync(loginRequestModel);
+            if (!authResult.IsAuthorized)
+            {
+                foreach (var authResultError in authResult.Errors)
+                {
+                    ModelState.AddModelError(authResultError.Key, authResultError.Value);
+                }
 
-            return Ok(token);
-            return RedirectToAction("Index", "Manage");
+                return View(loginViewModel);
+            }
+
+            var claims = ClaimsExtensions.GenerateClaims(authResult.UserCompany);
+            var principal = ClaimsExtensions.CreatePrincipal(claims);
+
+            await HttpContext.SignInAsync(principal);
+
+            return RedirectToAction("Index", "Account");
         }
 
         public IActionResult Register(string returnUrl)
@@ -68,28 +82,30 @@ namespace GoodsLogistics.Web.Controllers
             }
 
             var userCompanyCreateRequestModel = _mapper.Map<UserCompanyCreateRequestModel>(model);
-            var token = await _authService.RegisterAsync(userCompanyCreateRequestModel);
-           
-            //var claims = ClaimsFunctions.GenerateClaims(user);
-            //var principal = ClaimsFunctions.CreatePrincipal(claims);
-            //await HttpContext.SignInAsync(principal);yt
+            var authResult = await _authService.RegisterAsync(userCompanyCreateRequestModel);
 
-            return Ok(token);
-            return RedirectToAction("Index", "Manage");
+            if (!authResult.IsAuthorized)
+            {
+                foreach (var authResultError in authResult.Errors)
+                {
+                    ModelState.AddModelError(authResultError.Key, authResultError.Value);
+                }
+
+                return View(model);
+            }
+
+            var claims = ClaimsExtensions.GenerateClaims(authResult.UserCompany);
+            var principal = ClaimsExtensions.CreatePrincipal(claims);
+
+            await HttpContext.SignInAsync(principal);
+
+            return RedirectToAction("Index", "Account");
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Logout()
-        //{
-        //    await HttpContext.SignOutAsync();
-
-        //    return RedirectToAction("Index", "Home");
-        //}
-
-        //[HttpGet]
-        //public IActionResult AccessDenied()
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

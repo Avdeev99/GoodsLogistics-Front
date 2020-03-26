@@ -1,19 +1,8 @@
-﻿@*@using ProductsRise.Web.App_LocalResources
+﻿@using GoodsLogistics.Localization.Resources
 <div class="account_menu">
-    @{
-        if (User.IsInRole("Admin"))
-        {
-            <div class="account_menu_item">@Html.ActionLink(Resources.AdminPanel, "AdminPanel", "Manage")</div>
-        }
 
-        if (User.IsInRole("Manager"))
-        {
-            <div class="account_menu_item">@Html.ActionLink(Resources.RequestsList, "GetAllRequests", "Manage")</div>
-        }
-    }
-    <div class="account_menu_item">@Html.ActionLink(Resources.PersonalData, "Index", "Manage")</div>
-    <div class="account_menu_item">@Html.ActionLink(Resources.ChangePassword, "ChangePassword", "Manage")</div>
-    <div class="account_menu_item">@Html.ActionLink(Resources.MyRequests, "RequestsUserList", "Manage")</div>
+    <div class="account_menu_item">@Html.ActionLink(Resources.PersonalData, "Index", "Account")</div>
+    <div class="account_menu_item">@Html.ActionLink(Resources.ChangePassword, "ChangePassword", "Account")</div>
     <div class="account_menu_item">
         @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
         {
@@ -54,4 +43,4 @@
 
     });
 
-</script>*@
+</script>

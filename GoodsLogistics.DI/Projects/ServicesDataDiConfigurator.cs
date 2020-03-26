@@ -9,6 +9,7 @@ namespace GoodsLogistics.DI.Projects
         public static void Configure(IServiceCollection services)
         {
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IUserCompanyService, UserCompanyService>();
         }
     }
 }
