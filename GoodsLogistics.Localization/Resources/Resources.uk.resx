@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Адреса</value>
+  </data>
   <data name="Advantages" xml:space="preserve">
     <value>ПЕРЕВАГИ</value>
   </data>
+  <data name="BackToOfficeList" xml:space="preserve">
+    <value>Повернутися до Списку Офісів</value>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Змінити пароль</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Місто</value>
   </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Назва компанії</value>
@@ -129,8 +138,20 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Підтвердіть пароль</value>
   </data>
+  <data name="Country" xml:space="preserve">
+    <value>Країна</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Додати</value>
+  </data>
   <data name="CurrentPassword" xml:space="preserve">
     <value>Поточний пароль</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Докладніше</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Змінити</value>
   </data>
   <data name="EmailType" xml:space="preserve">
     <value>Це поле повинно бути відповідним до Email</value>
@@ -168,6 +189,9 @@
   <data name="Home" xml:space="preserve">
     <value>ГОЛОВНА</value>
   </data>
+  <data name="Key" xml:space="preserve">
+    <value>Ключ</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Вхід</value>
   </data>
@@ -186,6 +210,9 @@
   <data name="NoAccount" xml:space="preserve">
     <value>У Вас ще немає облікового запису?</value>
   </data>
+  <data name="Offices" xml:space="preserve">
+    <value>Офіси</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Пароль</value>
   </data>
@@ -198,11 +225,29 @@
   <data name="PersonalData" xml:space="preserve">
     <value>Особисті дані</value>
   </data>
+  <data name="PersonalDataWasChangedSuccessfully" xml:space="preserve">
+    <value>Персональні дані змінилися успішно</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Область</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Реєстрація</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Вилучити</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>Це поле обов'язкове для заповнення.</value>
+  </data>
+  <data name="SelectCity" xml:space="preserve">
+    <value>Оберіть місто</value>
+  </data>
+  <data name="SelectCountry" xml:space="preserve">
+    <value>Оберіть країну</value>
+  </data>
+  <data name="SelectRegion" xml:space="preserve">
+    <value>Оберіть область</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Підтвердити</value>

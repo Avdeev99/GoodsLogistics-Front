@@ -1,0 +1,51 @@
+﻿@using GoodsLogistics.Localization.Resources
+@model List<GoodsLogistics.ViewModels.DTO.OfficeViewModel>
+
+@{
+    ViewData["Title"] = "GenresList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section>
+    <div class="container">
+        <div class="row account_holder">
+            <div class="col-lg-4 account_menu_holder">
+                @Html.Partial("_AccountMenuPartial")
+            </div>
+            <div class="col-lg-8 account_holder_content">
+
+                <p>
+                    @Html.ActionLink(Resources.Create, "Create", "Office")
+                </p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName(Resources.Key)
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Key)
+                            </td>
+                            <td>
+                                @Html.ActionLink(Resources.Edit, "Update", "Office", new { key = item.Key }) |
+                                @Html.ActionLink(Resources.Details, "Details", "Office", new { key = item.Key }) |
+                                @Html.ActionLink(Resources.Remove, "Delete", "Office", new { key = item.Key })
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</section>

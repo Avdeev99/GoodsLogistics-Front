@@ -3,6 +3,7 @@
 
     <div class="account_menu_item">@Html.ActionLink(Resources.PersonalData, "Index", "Account")</div>
     <div class="account_menu_item">@Html.ActionLink(Resources.ChangePassword, "ChangePassword", "Account")</div>
+    <div class="account_menu_item">@Html.ActionLink(Resources.Offices, "GetAll", "Office")</div>
     <div class="account_menu_item">
         @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
         {

@@ -11,6 +11,12 @@ namespace GoodsLogistics.Automapper.Profiles
             CreateMap<LoginViewModel, UserCompanyLoginRequestModel>().ReverseMap();
 
             CreateMap<RegisterViewModel, UserCompanyCreateRequestModel>().ReverseMap();
+
+            CreateMap<UserCompanyViewModel, UserCompanyUpdateRequestModel>().ReverseMap();
+
+            CreateMap<UserCompanyModel, UserCompanyViewModel>().ReverseMap();
+
+            CreateMap<UserCompanyModel, UserCompanyUpdateRequestModel>().ReverseMap();
         }
     }
 }

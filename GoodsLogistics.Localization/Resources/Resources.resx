@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
   <data name="Advantages" xml:space="preserve">
     <value>ADVANTAGES</value>
   </data>
+  <data name="BackToOfficeList" xml:space="preserve">
+    <value>Back To Office List</value>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Change password</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
   </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Company name</value>
@@ -129,8 +138,20 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>ConfirmPassword</value>
   </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create new</value>
+  </data>
   <data name="CurrentPassword" xml:space="preserve">
     <value>Current Password</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="EmailType" xml:space="preserve">
     <value>This field must be email type field</value>
@@ -168,6 +189,9 @@
   <data name="Home" xml:space="preserve">
     <value>HOME</value>
   </data>
+  <data name="Key" xml:space="preserve">
+    <value>Key</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
@@ -186,6 +210,9 @@
   <data name="NoAccount" xml:space="preserve">
     <value>Don't have an account?</value>
   </data>
+  <data name="Offices" xml:space="preserve">
+    <value>Offices</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -198,11 +225,29 @@
   <data name="PersonalData" xml:space="preserve">
     <value>Personal data</value>
   </data>
+  <data name="PersonalDataWasChangedSuccessfully" xml:space="preserve">
+    <value>Personal data was changed successfully</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Region</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>This field is required.</value>
+  </data>
+  <data name="SelectCity" xml:space="preserve">
+    <value>Select city</value>
+  </data>
+  <data name="SelectCountry" xml:space="preserve">
+    <value>Select country</value>
+  </data>
+  <data name="SelectRegion" xml:space="preserve">
+    <value>Select region</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>

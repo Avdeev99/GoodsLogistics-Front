@@ -1,0 +1,60 @@
+﻿@using GoodsLogistics.Localization.Resources
+@model GoodsLogistics.ViewModels.DTO.OfficeViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section>
+    <div class="container">
+        <div class="row account_holder">
+            <div class="col-lg-4 account_menu_holder">
+                @Html.Partial("_AccountMenuPartial")
+            </div>
+            <div class="col-lg-8 account_holder_content">
+
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayName(Resources.Key)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Key)
+                        </dd>
+                        <dt>
+                            @Html.DisplayName(Resources.Country)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.City.Region.Country.Name)
+                        </dd>
+                        <dt>
+                            @Html.DisplayName(Resources.Region)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.City.Region.Name)
+                        </dd>
+                        <dt>
+                            @Html.DisplayName(Resources.City)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.City.Name)
+                        </dd>
+                        <dt>
+                            @Html.DisplayName(Resources.Address)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Address)
+                        </dd>
+                    </dl>
+                </div>
+                <div>
+                    @Html.ActionLink(Resources.Edit, "Update", "Office", new { key = Model.Key }) |
+                    @Html.ActionLink(Resources.BackToOfficeList, "GetAll", "Office")
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

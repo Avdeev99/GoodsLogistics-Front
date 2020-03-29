@@ -1,11 +1,15 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
+using GoodsLogistics.Auth.Constants;
 using GoodsLogistics.Auth.Extensions;
+using GoodsLogistics.Auth.Options;
+using GoodsLogistics.Auth.Services.Interfaces;
 using GoodsLogistics.Models.DTO.UserCompany;
 using GoodsLogistics.Services.Data.Services.Interfaces;
 using GoodsLogistics.ViewModels.DTO;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace GoodsLogistics.Web.Controllers
 {
@@ -13,11 +17,19 @@ namespace GoodsLogistics.Web.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IAuthService _authService;
+        private readonly ICookiesService _cookiesService;
+        private readonly IOptions<CookieAuthOptions> _cookieAuthOptions;
 
-        public AuthController(IMapper mapper, IAuthService authService)
+        public AuthController(
+            IMapper mapper, 
+            IAuthService authService, 
+            ICookiesService cookiesService,
+            IOptions<CookieAuthOptions> cookieAuthOptions)
         {
             _mapper = mapper;
             _authService = authService;
+            _cookiesService = cookiesService;
+            _cookieAuthOptions = cookieAuthOptions;
         }
 
         [HttpGet]
@@ -53,6 +65,11 @@ namespace GoodsLogistics.Web.Controllers
 
                 return View(loginViewModel);
             }
+
+            _cookiesService.SetCookie(
+                AuthConstants.JwtToken, 
+                authResult.JwtToken, 
+                _cookieAuthOptions.Value.ExpirationTimeInSeconds);
 
             var claims = ClaimsExtensions.GenerateClaims(authResult.UserCompany);
             var principal = ClaimsExtensions.CreatePrincipal(claims);
@@ -93,6 +110,11 @@ namespace GoodsLogistics.Web.Controllers
 
                 return View(model);
             }
+
+            _cookiesService.SetCookie(
+                AuthConstants.JwtToken,
+                authResult.JwtToken,
+                _cookieAuthOptions.Value.ExpirationTimeInSeconds);
 
             var claims = ClaimsExtensions.GenerateClaims(authResult.UserCompany);
             var principal = ClaimsExtensions.CreatePrincipal(claims);

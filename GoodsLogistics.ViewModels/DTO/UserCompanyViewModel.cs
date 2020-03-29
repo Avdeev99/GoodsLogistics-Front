@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using GoodsLogistics.Localization.Resources;
 using GoodsLogistics.Models.DTO.Office;
 
 namespace GoodsLogistics.ViewModels.DTO
@@ -7,6 +9,11 @@ namespace GoodsLogistics.ViewModels.DTO
     {
         public string CompanyId { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Resources),
+            ErrorMessageResourceName = "Required")]
+        [Display(Name = "Company Name")]
+        [MinLength(2, ErrorMessageResourceType = typeof(Resources),
+            ErrorMessageResourceName = "MinLength2Symbols")]
         public string Name { get; set; }
 
         public string Email { get; set; }

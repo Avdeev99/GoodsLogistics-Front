@@ -1,27 +1,46 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
+using GoodsLogistics.Auth.Providers.Interfaces;
+using GoodsLogistics.Models.DTO;
 using GoodsLogistics.Models.DTO.UserCompany;
 using GoodsLogistics.Services.Data.Services.Interfaces;
-using Newtonsoft.Json;
 
 namespace GoodsLogistics.Services.Data.Services
 {
     public class UserCompanyService : IUserCompanyService
     {
-        private readonly HttpClient _httpClient;
+        private readonly IApiServiceProvider _apiServiceProvider;
+        private readonly IResponseService _responseService;
 
-        public UserCompanyService(HttpClient httpClient)
+        public UserCompanyService(
+            IApiServiceProvider apiServiceProvider, 
+            IResponseService responseService)
         {
-            _httpClient = httpClient;
+            _apiServiceProvider = apiServiceProvider;
+            _responseService = responseService;
         }
 
-        public async Task<UserCompanyModel> GetUserCompany(string email)
+        public async Task<ServiceResponseModel<UserCompanyModel>> GetUserCompany(string email)
         {
-            var response = await _httpClient.GetAsync($"https://localhost:44380/users/{email}");
-            var responseStr = await response.Content.ReadAsStringAsync();
-            var userCompany = JsonConvert.DeserializeObject<UserCompanyModel>(responseStr);
-            return userCompany;
+            var url = $"https://localhost:44380/users/{email}";
+            var httpResponse = await _apiServiceProvider.GetAsync(
+                url, 
+                true);
+
+            var result = await _responseService.CreateResponse<UserCompanyModel>(httpResponse);
+            return result;
+        }
+
+        public async Task<ServiceResponseModel<UserCompanyModel>> UpdateUserCompany(string email, UserCompanyUpdateRequestModel updateRequestModel)
+        {
+            var url = $"https://localhost:44380/users/{email}";
+            var httpResponse = await _apiServiceProvider.PatchAsync(
+                url,
+                updateRequestModel,
+                true);
+
+            var result = await _responseService.CreateResponse<UserCompanyModel>(httpResponse);
+            return result;
         }
     }
 }

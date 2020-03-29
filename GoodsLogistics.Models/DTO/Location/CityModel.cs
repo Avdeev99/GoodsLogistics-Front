@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using GoodsLogistics.Models.DTO.Office;
 
-namespace GoodsLogistics.Models.DTO
+namespace GoodsLogistics.Models.DTO.Location
 {
     public class CityModel
     {
-        public string CityId { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public string CountryId { get; set; }
+        public int RegionId { get; set; }
 
-        public CountryModel Country { get; set; }
+        public RegionModel Region { get; set; }
 
         public List<OfficeModel> Offices { get; set; }
     }
