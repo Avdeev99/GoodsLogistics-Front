@@ -79,6 +79,15 @@ namespace GoodsLogistics.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this order.
+        /// </summary>
+        public static string AreYouSureYouWantToDeleteThisOrder {
+            get {
+                return ResourceManager.GetString("AreYouSureYouWantToDeleteThisOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back To Office List.
         /// </summary>
         public static string BackToOfficeList {
@@ -142,11 +151,47 @@ namespace GoodsLogistics.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creation date.
+        /// </summary>
+        public static string CreationDate {
+            get {
+                return ResourceManager.GetString("CreationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Password.
         /// </summary>
         public static string CurrentPassword {
             get {
                 return ResourceManager.GetString("CurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deletion confirmation.
+        /// </summary>
+        public static string DeletionСonfirmation {
+            get {
+                return ResourceManager.GetString("DeletionСonfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery date.
+        /// </summary>
+        public static string DeliveryDate {
+            get {
+                return ResourceManager.GetString("DeliveryDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery time.
+        /// </summary>
+        public static string DeliveryTime {
+            get {
+                return ResourceManager.GetString("DeliveryTime", resourceCulture);
             }
         }
         
@@ -174,6 +219,15 @@ namespace GoodsLogistics.Localization.Resources {
         public static string EmailType {
             get {
                 return ResourceManager.GetString("EmailType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date.
+        /// </summary>
+        public static string EndDate {
+            get {
+                return ResourceManager.GetString("EndDate", resourceCulture);
             }
         }
         
@@ -241,6 +295,33 @@ namespace GoodsLogistics.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Every day.
+        /// </summary>
+        public static string EveryDay {
+            get {
+                return ResourceManager.GetString("EveryDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every month.
+        /// </summary>
+        public static string EveryMonth {
+            get {
+                return ResourceManager.GetString("EveryMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every week.
+        /// </summary>
+        public static string EveryWeek {
+            get {
+                return ResourceManager.GetString("EveryWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Already have an account?.
         /// </summary>
         public static string ExistAccount {
@@ -268,6 +349,51 @@ namespace GoodsLogistics.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Frequency.
+        /// </summary>
+        public static string Frequency {
+            get {
+                return ResourceManager.GetString("Frequency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From last.
+        /// </summary>
+        public static string FromLast {
+            get {
+                return ResourceManager.GetString("FromLast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From new.
+        /// </summary>
+        public static string FromNew {
+            get {
+                return ResourceManager.GetString("FromNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good name.
+        /// </summary>
+        public static string GoodName {
+            get {
+                return ResourceManager.GetString("GoodName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good weight.
+        /// </summary>
+        public static string GoodWeight {
+            get {
+                return ResourceManager.GetString("GoodWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HOME.
         /// </summary>
         public static string Home {
@@ -282,6 +408,15 @@ namespace GoodsLogistics.Localization.Resources {
         public static string Key {
             get {
                 return ResourceManager.GetString("Key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        public static string Location {
+            get {
+                return ResourceManager.GetString("Location", resourceCulture);
             }
         }
         
@@ -322,11 +457,29 @@ namespace GoodsLogistics.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New order.
+        /// </summary>
+        public static string NewOrder {
+            get {
+                return ResourceManager.GetString("NewOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Password.
         /// </summary>
         public static string NewPassword {
             get {
                 return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
             }
         }
         
@@ -340,11 +493,38 @@ namespace GoodsLogistics.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorting.
+        /// </summary>
+        public static string ObjectiveSortingSign {
+            get {
+                return ResourceManager.GetString("ObjectiveSortingSign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Office.
+        /// </summary>
+        public static string Office {
+            get {
+                return ResourceManager.GetString("Office", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Offices.
         /// </summary>
         public static string Offices {
             get {
                 return ResourceManager.GetString("Offices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orders.
+        /// </summary>
+        public static string Orders {
+            get {
+                return ResourceManager.GetString("Orders", resourceCulture);
             }
         }
         
@@ -390,6 +570,15 @@ namespace GoodsLogistics.Localization.Resources {
         public static string PersonalDataWasChangedSuccessfully {
             get {
                 return ResourceManager.GetString("PersonalDataWasChangedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        public static string Price {
+            get {
+                return ResourceManager.GetString("Price", resourceCulture);
             }
         }
         
@@ -448,6 +637,24 @@ namespace GoodsLogistics.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select frequency.
+        /// </summary>
+        public static string SelectFrequency {
+            get {
+                return ResourceManager.GetString("SelectFrequency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select office.
+        /// </summary>
+        public static string SelectOffice {
+            get {
+                return ResourceManager.GetString("SelectOffice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select region.
         /// </summary>
         public static string SelectRegion {
@@ -462,6 +669,15 @@ namespace GoodsLogistics.Localization.Resources {
         public static string Submit {
             get {
                 return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

@@ -1,0 +1,474 @@
+﻿@using GoodsLogistics.Localization.Resources
+@using GoodsLogistics.Models.Enums
+@model GoodsLogistics.ViewModels.DTO.ObjectiveListViewModel
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/priceRange.css">
+}
+
+<section class="apartments_section">
+    <div class="container">
+
+        @using (Html.BeginForm("GetObjectives", "Objective", FormMethod.Get, new { id = "sortForm" }))
+        {
+
+            <div class="row apartmentsFilter_section">
+                <div class="col-lg-5 apartmentsFilter_holder">
+                    <div class="row">
+                        <div class="col-lg-6 filterSelect_holder">
+                            <select class="filterSelect" name="filteringPagination.Filter.SortingMethod">
+                                <!option value="" disabled="disabled" selected>@Resources.ObjectiveSortingSign</!option>
+                                <!option value="mostPopular"
+                                         @if (Model.Filter.SortingMethod == SortingMethod.FromNew) { <text> selected</text>
+                                 }>
+                                    @Resources.FromNew
+                                </!option>
+                                <!option value="priceAsc"
+                                         @if (Model.Filter.SortingMethod == SortingMethod.FromLast) { <text> selected</text>
+                                 }>
+                                    @Resources.FromLast
+                                </!option>
+                            </select>
+
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="div">
+                                <div class="wrapper">
+                                    <fieldset class="filter-price">
+
+                                        <div class="price-field">
+
+
+                                            @Html.TextBox("filteringModel.Filter.PriceFrom", Model.Filter.PriceFrom,
+                                                new { id = "lower", type = "range", min = Model.Filter.PriceFrom, max = Model.Filter.PriceTo })
+
+                                            @Html.TextBox("filteringModel.Filter.PriceTo", Model.Filter.PriceTo,
+                                                new { id = "upper", type = "range", min = Model.Filter.PriceFrom, max = Model.Filter.PriceTo })
+
+                                        </div>
+                                        <div class="price-wrap">
+                                            <span class="price-title"></span>
+                                            <div class="price-wrap-1">
+                                                <label for="one">$</label>
+                                                <input id="one" disabled>
+                                            </div>
+                                            <div class="price-wrap_line">–</div>
+                                            <div class="price-wrap-2">
+                                                <label for="two" class="priceRangeTo">$</label>
+                                                <input id="two" disabled>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <span class="filter_separator"></span>
+                    <span class="filter_price_title">@Resources.Price</span>
+
+                </div>
+                <div class="col-lg-7">
+                    <div class="row">
+
+                        <div class="col-lg-4 colLgWidthHolder">
+                            <select id="countrySelect" class="filterSelect" name="filteringModel.Filter.CountryId" data-countrySelect="countrySelect">
+                                <option value="" selected="selected">@Resources.SelectCountry</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 colLgWidthHolder">
+                            <select id="regionSelect" class="filterSelect" name="filteringModel.Filter.RegionId" data-regionSelect="regionSelect">
+                                <option value="" selected="selected">@Resources.SelectRegion</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 colLgWidthHolder">
+                            <select id="citySelect" class="filterSelect" name="filteringModel.Filter.CityId" data-citySelect="citySelect">
+                                <option value="" selected="selected">@Resources.SelectCity</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        }
+
+        <div class="newOrder-button-holder">
+            <button type="button" class="button_empty" data-toggle="modal" data-target="#order-creation-modal">
+                <i class="fas fa-plus"></i>
+                @Resources.NewOrder
+            </button>
+        </div>
+
+
+        <div class="apartments_holder" id="products-holder">
+
+            @*@Html.Partial("_ProductListPartial", Model)*@
+            <div class="row">
+
+                @foreach (var objective in Model.Objectives)
+                {
+                    <div class="col-lg-6 notRespondRequest_holder">
+                        <div class="notRespondRequest_item">
+
+                            <form data-requestForm="requestForm" action="@Url.Action("", "")" method="post">
+
+                                <input type="hidden" name="ObjectiveId" value="@objective.ObjectiveId" data-objectiveId="objectiveId" />
+
+                                <div class="d-flex justify-content-end reserved_item_date mb10">@objective.CreationDate.ToShortDateString()</div>
+
+                                <div class="row notRespondRequest_item_description_holder">
+                                    <div class="col-lg-6">@Resources.DeliveryDate: @objective.OrderDate.ToShortDateString()</div>
+                                    <div class="col-lg-6 tar">@Resources.Frequency: @objective.Frequency</div>
+                                </div>
+                                <div class="row notRespondRequest_item_description_holder">
+                                    <div class="col-lg-6">@Resources.DeliveryTime: @objective.OrderDate.ToShortTimeString()</div>
+                                    <div class="col-lg-6 tar">@Resources.EndDate: @objective.EndDate.ToShortDateString()</div>
+                                </div>
+                                <div class="notRespondRequest_item_description_line"></div>
+                                <div class="row respond_button_holder d-flex justify-content-between" data-requestButtonHolder="requestButtonHolder">
+                                    <div class="col-lg-2">
+                                        <button type="button" class="button_empty bg-color" id="objective-deletion-button">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <button type="button" class="button">
+                                                    <i class="far fa-edit"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <button type="button" class="button" data-objectiveDetails="objectiveDetails">
+                                                    <i class="fas fa-info-circle"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@*Creation Modal*@
+<div class="modal fade" id="order-creation-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <form method="post" action="@Url.Action("Create", "Objective")">
+            <div class="modal-content objective-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">@Resources.NewOrder</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label>@Resources.Location</label>
+                    <div class="form-group row">
+                        <div class="col-lg-4">
+                            <input type="radio" id="office" name="location" value="office" checked data-locationsRadio="locationsRadio">
+                            <label for="office">@Resources.Office</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <input type="radio" id="address" name="location" value="address" data-locationsRadio="locationsRadio">
+                            <label for="address">@Resources.Address</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="office-create-group">
+                        <label>@Resources.Office</label>
+                        <select id="officeSelect" class="input">
+                            <option value="" selected="selected">@Resources.SelectOffice</option>
+                        </select>
+                    </div>
+
+                    <div class="hide" id="address-create-group">
+                        <div class="form-group row">
+                            <div class="col-lg-4">
+                                <label>@Resources.Country</label>
+                                <select id="countryCreateSelect" class="input">
+                                    <option value="" selected="selected">@Resources.SelectCountry</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>@Resources.Region</label>
+                                <select id="regionCreateSelect" class="input">
+                                    <option value="" selected="selected">@Resources.SelectRegion</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>@Resources.City</label>
+                                <select id="cityCreateSelect" class="input" name="Location.CityId">
+                                    <option value="" selected="selected">@Resources.SelectCity</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>@Resources.Address</label>
+                            <input class="input" placeholder="@Resources.Address" required="required" minlength="6" name="Location.Address" />
+                            @Html.ValidationMessage("address", "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-4">
+                            <label>@Resources.DeliveryDate</label>
+                            <input type="datetime-local" class="input" name="OrderDate" />
+                        </div>
+                        <div class="col-lg-4">
+                            <label>@Resources.Frequency</label>
+                            <select id="deliveryFrequency" class="input" name="Frequency">
+                                <option value="0" selected="selected">@Resources.SelectFrequency</option>
+                                <option value="1">@Resources.EveryDay</option>
+                                <option value="2">@Resources.EveryWeek</option>
+                                <option value="3">@Resources.EveryMonth</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>@Resources.EndDate</label>
+                            <input type="date" class="input" name="EndDate" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <label>@Resources.GoodName</label>
+                            <input class="input" placeholder="@Resources.GoodName" name="Good.Name" />
+                        </div>
+                        <div class="col-lg-3">
+                            <label>@Resources.GoodWeight</label>
+                            <input type="number" name="Good.Weight" class="input" value="1" required="required" min="1" max="500" step="0.1" />
+                        </div>
+                        <div class="col-lg-3">
+                            <label>@Resources.Price</label>
+                            <input type="number" name="Price" class="input" value="1" required="required" min="1" step="0.01" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer d-flex justify-content-end">
+                    <button type="submit" class="button w-25">@Resources.Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- Details Modal -->
+<div class="modal fade" id="objective-details-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content objective-modal" id="objective-details-modal-content">
+        </div>
+    </div>
+</div>
+
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="objective-deletion-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">@Resources.DeletionСonfirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Resources.AreYouSureYouWantToDeleteThisOrder
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">@Resources.No</button>
+                <form action="@Url.Action("Delete", "Objective")" id="objective-deletion-form" method="post">
+                    <input type="hidden" value="" id="deletion-modal-hidden-objectiveId" name="objectiveId"/>
+                    <button type="submit" class="btn btn-primary">@Resources.Yes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/momentMin.js"></script>
+    <script src="~/js/daterangepicker.js"></script>
+    <script src="~/js/datePicker.js"></script>
+    <script src="~/js/priceRange.js"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <script>
+        function fillLocations(countrySelect, regionSelect, citySelect) {
+            regionSelect.disabled = true;
+            citySelect.disabled = true;
+
+            let countriesUrl = '@Url.Action("GetCountries", "Location")';
+            getLocations(countriesUrl, 'GET').then(async countries => {
+                fillSelect(countrySelect, countries);
+            });
+
+            countrySelect.addEventListener('change',
+                async function(e) {
+                    await fillRegions(countrySelect, regionSelect);
+                    await fillCities(regionSelect, citySelect);
+                });
+
+            regionSelect.addEventListener('change',
+                async function() {
+                    await fillCities(regionSelect, citySelect);
+                });
+        }
+
+        async function getLocations(url, httpMethod) {
+            let result = await fetch(url,
+                {
+                    method: httpMethod,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(async function(response) {
+                let locations = await response.json();
+                return locations;
+            });
+            return result;
+        }
+
+        function disableSelects(selects) {
+            for (let i = 0; i < selects.length; i++) {
+                selects[i].disabled = true;
+            }
+        }
+
+        function fillSelect(select, array) {
+            array.forEach(element => {
+                if (element.Name !== "") {
+                    let option = new Option(element.Name, element.Id);
+                    select.add(option);
+                }
+            });
+        }
+
+        async function fillRegions(countrySelect, regionSelect) {
+            let countryId = countrySelect.value;
+            let regionsUrl = '/Location/GetRegionsByCountryId?countryId=' + countryId;
+            let regions = await getLocations(regionsUrl, 'GET');
+            regionSelect.disabled = false;
+            regionSelect.options.length = 0;
+            fillSelect(regionSelect, regions);
+        }
+
+        async function fillCities(regionSelect, citySelect) {
+            let regionId = regionSelect.value;
+            let citiesUrl = '/Location/GetCitiesByRegionId?regionId=' + regionId;
+            let cities = await getLocations(citiesUrl, 'GET');
+            citySelect.disabled = false;
+            citySelect.options.length = 0;
+            fillSelect(citySelect, cities);
+        }
+    </script>
+
+    <script>
+        let countrySelect = document.getElementById('countrySelect');
+        let regionSelect = document.getElementById('regionSelect');
+        let citySelect = document.getElementById('citySelect');
+
+        fillLocations(countrySelect, regionSelect, citySelect);
+
+        let countryCreateSelect = document.getElementById('countryCreateSelect');
+        let regionCreateSelect = document.getElementById('regionCreateSelect');
+        let cityCreateSelect = document.getElementById('cityCreateSelect');
+
+        fillLocations(countryCreateSelect, regionCreateSelect, cityCreateSelect);
+    </script>
+
+    <script>
+        var locationsRadioGroup = document.querySelectorAll("[data-locationsRadio]");
+        for (let i = 0; i < locationsRadioGroup.length; i++) {
+            locationsRadioGroup[i].addEventListener('change',
+                function() {
+                    let officeGroup = document.getElementById('office-create-group');
+                    officeGroup.classList.toggle('hide');
+
+                    let addressGroup = document.getElementById('address-create-group');
+                    addressGroup.classList.toggle('hide');
+                });
+        }
+
+        (function() {
+            $("#order-creation-modal").on("hidden.bs.modal",
+                function() {
+                    $(this).find('form').trigger('reset');
+
+                    let officeGroup = document.getElementById('office-create-group');
+                    let addressGroup = document.getElementById('address-create-group');
+
+                    if (officeGroup.classList.contains('hide')) {
+                        officeGroup.classList.remove('hide');
+                    }
+
+                    if (!addressGroup.classList.contains('hide')) {
+                        addressGroup.classList.add('hide');
+                    }
+                });
+        })();
+    </script>
+
+    <script>
+        let objectiveDetailsButtons = document.querySelectorAll('[data-objectiveDetails]');
+        objectiveDetailsButtons.forEach(button => {
+            button.addEventListener('click',
+                async function() {
+                    let form = button.closest('[data-requestForm]');
+                    let id = form.querySelector('[data-objectiveId]').value;
+                    let url = '/Objective/GetObjectiveById?objectiveId=' + id;
+
+                    await fetch(url,
+                        {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }).then(async function(response) {
+                        let content = await response.text();
+                        let modalContent = document.getElementById('objective-details-modal-content');
+                        modalContent.innerHTML = content;
+                        $('#objective-details-modal').modal('show');
+                    });
+                });
+        });
+    </script>
+
+    <script>
+        let objectiveDeletionButton = document.getElementById('objective-deletion-button');
+        objectiveDeletionButton.addEventListener('click', function() {
+            let form = objectiveDeletionButton.closest('[data-requestForm]');
+            let objectiveId = form.querySelector('[data-objectiveId]').value;
+            let hiddenDeletionId = document.getElementById('deletion-modal-hidden-objectiveId');
+            hiddenDeletionId.value = objectiveId;
+            $('#objective-deletion-modal').modal('show');
+        });
+    </script>
+}

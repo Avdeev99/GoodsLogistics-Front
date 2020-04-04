@@ -25,8 +25,20 @@ body {
     margin-bottom: 15px;
 }
 
+.mb5 {
+    margin-bottom: 5px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
 .mt10 {
     margin-top: 10px;
+}
+
+.bg-color {
+    color: #2196f3;
 }
 
 .disabled {
@@ -35,6 +47,10 @@ body {
     opacity: 0.5;
     pointer-events: none;
     text-decoration: none;
+}
+
+.hide {
+    display: none;
 }
 
 .pagination li a {
@@ -49,6 +65,12 @@ body {
 .pagination-active-link {
     border-bottom: 2px solid #4A4A4A;
     color: #4A4A4A;
+}
+
+.objective-modal {
+    border: none;
+    border-left: 5px solid #2196f3;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .08);
 }
 
 
@@ -777,9 +799,24 @@ body {
     background: #fff;
     height: 55px;
     margin-top: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     position: relative;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .08);
+}
+
+.newOrder-button-holder {
+    margin-bottom: 20px;
+    width: 15%;
+}
+
+    .newOrder-button-holder button {
+        color: #2196f3;
+        background: #f8f9fa;
+        outline: none;
+    }
+
+.newOrder-button-holder button i {
+    margin-right: 5px;
 }
 
 .filter_separator {

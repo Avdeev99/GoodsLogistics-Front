@@ -123,6 +123,9 @@
   <data name="Advantages" xml:space="preserve">
     <value>ПЕРЕВАГИ</value>
   </data>
+  <data name="AreYouSureYouWantToDeleteThisOrder" xml:space="preserve">
+    <value>Ви впевнені що хочете видалити це замовлення?</value>
+  </data>
   <data name="BackToOfficeList" xml:space="preserve">
     <value>Повернутися до Списку Офісів</value>
   </data>
@@ -144,8 +147,20 @@
   <data name="Create" xml:space="preserve">
     <value>Додати</value>
   </data>
+  <data name="CreationDate" xml:space="preserve">
+    <value>Дата створення</value>
+  </data>
   <data name="CurrentPassword" xml:space="preserve">
     <value>Поточний пароль</value>
+  </data>
+  <data name="DeletionConfirmation" xml:space="preserve">
+    <value>Підтвердження видалення</value>
+  </data>
+  <data name="DeliveryDate" xml:space="preserve">
+    <value>Дата доставки</value>
+  </data>
+  <data name="DeliveryTime" xml:space="preserve">
+    <value>Час доставки</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>Докладніше</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="EmailType" xml:space="preserve">
     <value>Це поле повинно бути відповідним до Email</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Кінцева дата</value>
   </data>
   <data name="EnterCompanyName" xml:space="preserve">
     <value>Введіть назву компанії</value>
@@ -177,6 +195,15 @@
   <data name="EnterPassword" xml:space="preserve">
     <value>Введіть пароль</value>
   </data>
+  <data name="EveryDay" xml:space="preserve">
+    <value>Щодня</value>
+  </data>
+  <data name="EveryMonth" xml:space="preserve">
+    <value>Цомісяця</value>
+  </data>
+  <data name="EveryWeek" xml:space="preserve">
+    <value>Щотижня</value>
+  </data>
   <data name="ExistAccount" xml:space="preserve">
     <value>Вже є аккаунт?</value>
   </data>
@@ -186,11 +213,29 @@
   <data name="FooterContent" xml:space="preserve">
     <value>Корпорація Авдєєва © 2019 Всі права захищені</value>
   </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>Повторюваність</value>
+  </data>
+  <data name="FromLast" xml:space="preserve">
+    <value>Спочатку старі</value>
+  </data>
+  <data name="FromNew" xml:space="preserve">
+    <value>Спочатку нові</value>
+  </data>
+  <data name="GoodName" xml:space="preserve">
+    <value>Навза товару</value>
+  </data>
+  <data name="GoodWeight" xml:space="preserve">
+    <value>Вага твоару</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>ГОЛОВНА</value>
   </data>
   <data name="Key" xml:space="preserve">
     <value>Ключ</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Розташування</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Вхід</value>
@@ -204,14 +249,29 @@
   <data name="MinLength6Symbols" xml:space="preserve">
     <value>Це поле повинно бути мінімум 6 символи.</value>
   </data>
+  <data name="NewOrder" xml:space="preserve">
+    <value>Нове замовлення</value>
+  </data>
   <data name="NewPassword" xml:space="preserve">
     <value>Новий пароль</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Ні</value>
   </data>
   <data name="NoAccount" xml:space="preserve">
     <value>У Вас ще немає облікового запису?</value>
   </data>
+  <data name="ObjectiveSortingSign" xml:space="preserve">
+    <value>Сортування</value>
+  </data>
+  <data name="Office" xml:space="preserve">
+    <value>Офіс</value>
+  </data>
   <data name="Offices" xml:space="preserve">
     <value>Офіси</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Замовлення</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Пароль</value>
@@ -227,6 +287,9 @@
   </data>
   <data name="PersonalDataWasChangedSuccessfully" xml:space="preserve">
     <value>Персональні дані змінилися успішно</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Ціна</value>
   </data>
   <data name="Region" xml:space="preserve">
     <value>Область</value>
@@ -246,10 +309,19 @@
   <data name="SelectCountry" xml:space="preserve">
     <value>Оберіть країну</value>
   </data>
+  <data name="SelectFrequency" xml:space="preserve">
+    <value>Оберіть повторюваність</value>
+  </data>
+  <data name="SelectOffice" xml:space="preserve">
+    <value>Оберіть офіс</value>
+  </data>
   <data name="SelectRegion" xml:space="preserve">
     <value>Оберіть область</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Підтвердити</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Так</value>
   </data>
 </root>

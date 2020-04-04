@@ -123,6 +123,9 @@
   <data name="Advantages" xml:space="preserve">
     <value>ADVANTAGES</value>
   </data>
+  <data name="AreYouSureYouWantToDeleteThisOrder" xml:space="preserve">
+    <value>Are you sure you want to delete this order</value>
+  </data>
   <data name="BackToOfficeList" xml:space="preserve">
     <value>Back To Office List</value>
   </data>
@@ -144,8 +147,20 @@
   <data name="Create" xml:space="preserve">
     <value>Create new</value>
   </data>
+  <data name="CreationDate" xml:space="preserve">
+    <value>Creation date</value>
+  </data>
   <data name="CurrentPassword" xml:space="preserve">
     <value>Current Password</value>
+  </data>
+  <data name="DeletionСonfirmation" xml:space="preserve">
+    <value>Deletion confirmation</value>
+  </data>
+  <data name="DeliveryDate" xml:space="preserve">
+    <value>Delivery date</value>
+  </data>
+  <data name="DeliveryTime" xml:space="preserve">
+    <value>Delivery time</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="EmailType" xml:space="preserve">
     <value>This field must be email type field</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End date</value>
   </data>
   <data name="EnterCompanyName" xml:space="preserve">
     <value>Enter company name</value>
@@ -177,6 +195,15 @@
   <data name="EnterPassword" xml:space="preserve">
     <value>Enter Password</value>
   </data>
+  <data name="EveryDay" xml:space="preserve">
+    <value>Every day</value>
+  </data>
+  <data name="EveryMonth" xml:space="preserve">
+    <value>Every month</value>
+  </data>
+  <data name="EveryWeek" xml:space="preserve">
+    <value>Every week</value>
+  </data>
   <data name="ExistAccount" xml:space="preserve">
     <value>Already have an account?</value>
   </data>
@@ -186,11 +213,29 @@
   <data name="FooterContent" xml:space="preserve">
     <value>Avdeev Corporation © 2019 All Rights Reserved</value>
   </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>Frequency</value>
+  </data>
+  <data name="FromLast" xml:space="preserve">
+    <value>From last</value>
+  </data>
+  <data name="FromNew" xml:space="preserve">
+    <value>From new</value>
+  </data>
+  <data name="GoodName" xml:space="preserve">
+    <value>Good name</value>
+  </data>
+  <data name="GoodWeight" xml:space="preserve">
+    <value>Good weight</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>HOME</value>
   </data>
   <data name="Key" xml:space="preserve">
     <value>Key</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
@@ -204,14 +249,29 @@
   <data name="MinLength6Symbols" xml:space="preserve">
     <value>This field must be at least 6 symbols.</value>
   </data>
+  <data name="NewOrder" xml:space="preserve">
+    <value>New order</value>
+  </data>
   <data name="NewPassword" xml:space="preserve">
     <value>New Password</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
   </data>
   <data name="NoAccount" xml:space="preserve">
     <value>Don't have an account?</value>
   </data>
+  <data name="ObjectiveSortingSign" xml:space="preserve">
+    <value>Sorting</value>
+  </data>
+  <data name="Office" xml:space="preserve">
+    <value>Office</value>
+  </data>
   <data name="Offices" xml:space="preserve">
     <value>Offices</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Orders</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
@@ -227,6 +287,9 @@
   </data>
   <data name="PersonalDataWasChangedSuccessfully" xml:space="preserve">
     <value>Personal data was changed successfully</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
   </data>
   <data name="Region" xml:space="preserve">
     <value>Region</value>
@@ -246,10 +309,19 @@
   <data name="SelectCountry" xml:space="preserve">
     <value>Select country</value>
   </data>
+  <data name="SelectFrequency" xml:space="preserve">
+    <value>Select frequency</value>
+  </data>
+  <data name="SelectOffice" xml:space="preserve">
+    <value>Select office</value>
+  </data>
   <data name="SelectRegion" xml:space="preserve">
     <value>Select region</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>
