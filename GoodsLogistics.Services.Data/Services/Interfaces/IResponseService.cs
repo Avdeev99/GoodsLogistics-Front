@@ -6,6 +6,6 @@ namespace GoodsLogistics.Services.Data.Services.Interfaces
 {
     public interface IResponseService
     {
-        Task<ServiceResponseModel<T>> CreateResponse<T>(HttpResponseMessage httpResponse) where T : class;
+        Task<ServiceResponseModel<T>> CreateResponse<T>(HttpResponseMessage httpResponse);
     }
 }

@@ -135,6 +135,9 @@
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Company name</value>
   </data>
@@ -269,6 +272,9 @@
   </data>
   <data name="Offices" xml:space="preserve">
     <value>Offices</value>
+  </data>
+  <data name="OrderInformation" xml:space="preserve">
+    <value>Order information</value>
   </data>
   <data name="Orders" xml:space="preserve">
     <value>Orders</value>

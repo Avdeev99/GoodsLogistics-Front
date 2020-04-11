@@ -34,7 +34,7 @@ namespace GoodsLogistics.ViewModels.DTO
 
         public GoodModel Good { get; set; }
 
-        public LocationModel Location { get; set; }
+        public LocationViewModel Location { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources),
             ErrorMessageResourceName = "Required")]

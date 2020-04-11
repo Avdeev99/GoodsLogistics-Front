@@ -7,6 +7,7 @@ using GoodsLogistics.Services.Data.Services.Interfaces;
 using GoodsLogistics.ViewModels.DTO;
 using GoodsLogistics.Web.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace GoodsLogistics.Web.Controllers
 {
@@ -98,6 +99,18 @@ namespace GoodsLogistics.Web.Controllers
             await _officeService.DeleteOffice(key);
 
             return RedirectToAction("GetAll");
+        }
+
+        public async Task<string> GetAllByCompanyId(string companyId)
+        {
+            var serviceResponse = await _officeService.GetOfficesByCompanyId(companyId);
+            if (!serviceResponse.IsSuccess)
+            {
+                return null;
+            }
+
+            var result = JsonConvert.SerializeObject(serviceResponse.Data);
+            return result;
         }
     }
 }

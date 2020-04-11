@@ -10,7 +10,7 @@ namespace GoodsLogistics.Services.Data.Services
 {
     public class ResponseService : IResponseService
     {
-        public async Task<ServiceResponseModel<T>> CreateResponse<T>(HttpResponseMessage httpResponse) where T : class
+        public async Task<ServiceResponseModel<T>> CreateResponse<T>(HttpResponseMessage httpResponse)
         {
             var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
 

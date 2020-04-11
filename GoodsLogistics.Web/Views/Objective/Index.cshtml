@@ -1,4 +1,5 @@
-﻿@using GoodsLogistics.Localization.Resources
+﻿@using System.Security.Claims
+@using GoodsLogistics.Localization.Resources
 @using GoodsLogistics.Models.Enums
 @model GoodsLogistics.ViewModels.DTO.ObjectiveListViewModel
 
@@ -21,14 +22,14 @@
                 <div class="col-lg-5 apartmentsFilter_holder">
                     <div class="row">
                         <div class="col-lg-6 filterSelect_holder">
-                            <select class="filterSelect" name="filteringPagination.Filter.SortingMethod">
+                            <select class="filterSelect" name="listViewModel.Filter.SortingMethod">
                                 <!option value="" disabled="disabled" selected>@Resources.ObjectiveSortingSign</!option>
-                                <!option value="mostPopular"
+                                <!option value="@SortingMethod.FromNew"
                                          @if (Model.Filter.SortingMethod == SortingMethod.FromNew) { <text> selected</text>
                                  }>
                                     @Resources.FromNew
                                 </!option>
-                                <!option value="priceAsc"
+                                <!option value="@SortingMethod.FromLast"
                                          @if (Model.Filter.SortingMethod == SortingMethod.FromLast) { <text> selected</text>
                                  }>
                                     @Resources.FromLast
@@ -45,10 +46,10 @@
                                         <div class="price-field">
 
 
-                                            @Html.TextBox("filteringModel.Filter.PriceFrom", Model.Filter.PriceFrom,
+                                            @Html.TextBox("listViewModel.Filter.PriceFrom", Model.Filter.PriceFrom,
                                                 new { id = "lower", type = "range", min = Model.Filter.PriceFrom, max = Model.Filter.PriceTo })
 
-                                            @Html.TextBox("filteringModel.Filter.PriceTo", Model.Filter.PriceTo,
+                                            @Html.TextBox("listViewModel.Filter.PriceTo", Model.Filter.PriceTo,
                                                 new { id = "upper", type = "range", min = Model.Filter.PriceFrom, max = Model.Filter.PriceTo })
 
                                         </div>
@@ -78,19 +79,19 @@
                     <div class="row">
 
                         <div class="col-lg-4 colLgWidthHolder">
-                            <select id="countrySelect" class="filterSelect" name="filteringModel.Filter.CountryId" data-countrySelect="countrySelect">
+                            <select id="countrySelect" class="filterSelect" name="listViewModel.Filter.CountryId" data-countrySelect="countrySelect">
                                 <option value="" selected="selected">@Resources.SelectCountry</option>
                             </select>
                         </div>
 
                         <div class="col-lg-4 colLgWidthHolder">
-                            <select id="regionSelect" class="filterSelect" name="filteringModel.Filter.RegionId" data-regionSelect="regionSelect">
+                            <select id="regionSelect" class="filterSelect" name="listViewModel.Filter.RegionId" data-regionSelect="regionSelect">
                                 <option value="" selected="selected">@Resources.SelectRegion</option>
                             </select>
                         </div>
 
                         <div class="col-lg-4 colLgWidthHolder">
-                            <select id="citySelect" class="filterSelect" name="filteringModel.Filter.CityId" data-citySelect="citySelect">
+                            <select id="citySelect" class="filterSelect" name="listViewModel.Filter.CityId" data-citySelect="citySelect">
                                 <option value="" selected="selected">@Resources.SelectCity</option>
                             </select>
                         </div>
@@ -109,59 +110,10 @@
         </div>
 
 
-        <div class="apartments_holder" id="products-holder">
+        <div class="apartments_holder" id="objectives-holder">
 
-            @*@Html.Partial("_ProductListPartial", Model)*@
-            <div class="row">
+            @Html.Partial("_ObjectiveListPartial", Model)
 
-                @foreach (var objective in Model.Objectives)
-                {
-                    <div class="col-lg-6 notRespondRequest_holder">
-                        <div class="notRespondRequest_item">
-
-                            <form data-requestForm="requestForm" action="@Url.Action("", "")" method="post">
-
-                                <input type="hidden" name="ObjectiveId" value="@objective.ObjectiveId" data-objectiveId="objectiveId" />
-
-                                <div class="d-flex justify-content-end reserved_item_date mb10">@objective.CreationDate.ToShortDateString()</div>
-
-                                <div class="row notRespondRequest_item_description_holder">
-                                    <div class="col-lg-6">@Resources.DeliveryDate: @objective.OrderDate.ToShortDateString()</div>
-                                    <div class="col-lg-6 tar">@Resources.Frequency: @objective.Frequency</div>
-                                </div>
-                                <div class="row notRespondRequest_item_description_holder">
-                                    <div class="col-lg-6">@Resources.DeliveryTime: @objective.OrderDate.ToShortTimeString()</div>
-                                    <div class="col-lg-6 tar">@Resources.EndDate: @objective.EndDate.ToShortDateString()</div>
-                                </div>
-                                <div class="notRespondRequest_item_description_line"></div>
-                                <div class="row respond_button_holder d-flex justify-content-between" data-requestButtonHolder="requestButtonHolder">
-                                    <div class="col-lg-2">
-                                        <button type="button" class="button_empty bg-color" id="objective-deletion-button">
-                                            <i class="far fa-trash-alt"></i>
-                                        </button>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <button type="button" class="button">
-                                                    <i class="far fa-edit"></i>
-                                                </button>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <button type="button" class="button" data-objectiveDetails="objectiveDetails">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-                }
-
-            </div>
         </div>
     </div>
 </section>
@@ -193,7 +145,7 @@
 
                     <div class="form-group" id="office-create-group">
                         <label>@Resources.Office</label>
-                        <select id="officeSelect" class="input">
+                        <select id="officeSelect" class="input" name="Location.OfficeKey">
                             <option value="" selected="selected">@Resources.SelectOffice</option>
                         </select>
                     </div>
@@ -222,7 +174,7 @@
 
                         <div class="form-group">
                             <label>@Resources.Address</label>
-                            <input class="input" placeholder="@Resources.Address" required="required" minlength="6" name="Location.Address" />
+                            <input class="input" placeholder="@Resources.Address" minlength="6" name="Location.Address" />
                             @Html.ValidationMessage("address", "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -321,28 +273,28 @@
     <script src="~/js/bootstrap.min.js"></script>
 
     <script>
-        function fillLocations(countrySelect, regionSelect, citySelect) {
+        function fillLocations(countrySelect, regionSelect, citySelect, autofill) {
             regionSelect.disabled = true;
             citySelect.disabled = true;
 
             let countriesUrl = '@Url.Action("GetCountries", "Location")';
-            getLocations(countriesUrl, 'GET').then(async countries => {
+            getJsonData(countriesUrl, 'GET').then(async countries => {
                 fillSelect(countrySelect, countries);
             });
 
             countrySelect.addEventListener('change',
                 async function(e) {
-                    await fillRegions(countrySelect, regionSelect);
-                    await fillCities(regionSelect, citySelect);
+                    await fillRegions(countrySelect, regionSelect, autofill);
+                    await fillCities(regionSelect, citySelect, autofill);
                 });
 
             regionSelect.addEventListener('change',
                 async function() {
-                    await fillCities(regionSelect, citySelect);
+                    await fillCities(regionSelect, citySelect, autofill);
                 });
         }
 
-        async function getLocations(url, httpMethod) {
+        async function getJsonData(url, httpMethod) {
             let result = await fetch(url,
                 {
                     method: httpMethod,
@@ -371,21 +323,33 @@
             });
         }
 
-        async function fillRegions(countrySelect, regionSelect) {
+        async function fillRegions(countrySelect, regionSelect, autofill) {
             let countryId = countrySelect.value;
             let regionsUrl = '/Location/GetRegionsByCountryId?countryId=' + countryId;
-            let regions = await getLocations(regionsUrl, 'GET');
+            let regions = await getJsonData(regionsUrl, 'GET');
             regionSelect.disabled = false;
             regionSelect.options.length = 0;
+
+            if (!autofill) {
+                let option = new Option("@Resources.SelectRegion", '');
+                regionSelect.add(option);
+            }
+            
             fillSelect(regionSelect, regions);
         }
 
-        async function fillCities(regionSelect, citySelect) {
+        async function fillCities(regionSelect, citySelect, autofill) {
             let regionId = regionSelect.value;
             let citiesUrl = '/Location/GetCitiesByRegionId?regionId=' + regionId;
-            let cities = await getLocations(citiesUrl, 'GET');
+            let cities = await getJsonData(citiesUrl, 'GET');
             citySelect.disabled = false;
             citySelect.options.length = 0;
+
+            if (!autofill) {
+                let option = new Option("@Resources.SelectCity", '');
+                citySelect.add(option);
+            }
+
             fillSelect(citySelect, cities);
         }
     </script>
@@ -395,13 +359,13 @@
         let regionSelect = document.getElementById('regionSelect');
         let citySelect = document.getElementById('citySelect');
 
-        fillLocations(countrySelect, regionSelect, citySelect);
+        fillLocations(countrySelect, regionSelect, citySelect, false);
 
         let countryCreateSelect = document.getElementById('countryCreateSelect');
         let regionCreateSelect = document.getElementById('regionCreateSelect');
         let cityCreateSelect = document.getElementById('cityCreateSelect');
 
-        fillLocations(countryCreateSelect, regionCreateSelect, cityCreateSelect);
+        fillLocations(countryCreateSelect, regionCreateSelect, cityCreateSelect, true);
     </script>
 
     <script>
@@ -414,6 +378,8 @@
 
                     let addressGroup = document.getElementById('address-create-group');
                     addressGroup.classList.toggle('hide');
+
+
                 });
         }
 
@@ -437,38 +403,77 @@
     </script>
 
     <script>
-        let objectiveDetailsButtons = document.querySelectorAll('[data-objectiveDetails]');
-        objectiveDetailsButtons.forEach(button => {
-            button.addEventListener('click',
-                async function() {
-                    let form = button.closest('[data-requestForm]');
-                    let id = form.querySelector('[data-objectiveId]').value;
-                    let url = '/Objective/GetObjectiveById?objectiveId=' + id;
-
-                    await fetch(url,
-                        {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        }).then(async function(response) {
-                        let content = await response.text();
-                        let modalContent = document.getElementById('objective-details-modal-content');
-                        modalContent.innerHTML = content;
-                        $('#objective-details-modal').modal('show');
-                    });
-                });
+        let officeSelect = document.getElementById('officeSelect');
+        let officesUrl = '/Office/GetAllByCompanyId?companyId=' + '@User.FindFirst(ClaimTypes.NameIdentifier).Value';
+        getJsonData(officesUrl, 'GET').then(async offices => {
+            offices.forEach(office => {
+                if (office.Key !== "") {
+                    let option = new Option(office.Key, office.Key);
+                    officeSelect.add(option);
+                }
+            });
         });
     </script>
 
     <script>
-        let objectiveDeletionButton = document.getElementById('objective-deletion-button');
-        objectiveDeletionButton.addEventListener('click', function() {
-            let form = objectiveDeletionButton.closest('[data-requestForm]');
-            let objectiveId = form.querySelector('[data-objectiveId]').value;
-            let hiddenDeletionId = document.getElementById('deletion-modal-hidden-objectiveId');
-            hiddenDeletionId.value = objectiveId;
-            $('#objective-deletion-modal').modal('show');
+        function insertParamsToURL(params) {
+            return location.href.split('#')[0].split('?')[0] + '?' + params;
+        }
+
+        async function sorting(formData) {
+            await fetch('@Url.Action("AllSorted", "Objective")',
+                    {
+                        method: 'POST',
+                        body: new URLSearchParams(formData)
+                    })
+                .then(async function(response) {
+                    let productsHolder = document.getElementById("objectives-holder");
+                    productsHolder.innerHTML = await response.text();
+                    window.history.pushState("", "", insertParamsToURL(new URLSearchParams(formData)));
+                });
+        }
+
+        let form = document.getElementById("sortForm");
+        form.addEventListener("change",
+            async function(e) {
+
+                let formData = new FormData(form);
+
+                sorting(formData);
+            });
+    </script>
+
+    <script>
+        let objectivesHolder = document.getElementById('objectives-holder');
+        objectivesHolder.addEventListener('click', async function(event) {
+            if (event.target.hasAttribute("data-objectiveDetails") || event.target.closest("[data-objectiveDetails]")) {
+                let button = event.target;
+                let form = button.closest('[data-requestForm]');
+                let id = form.querySelector('[data-objectiveId]').value;
+                let url = '/Objective/GetObjectiveById?objectiveId=' + id;
+
+                await fetch(url,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(async function(response) {
+                    let content = await response.text();
+                    let modalContent = document.getElementById('objective-details-modal-content');
+                    modalContent.innerHTML = content;
+                    $('#objective-details-modal').modal('show');
+                });
+            }
+
+            if (event.target.hasAttribute("data-objectiveDeletionButton") || event.target.closest("[data-objectiveDeletionButton]")) {
+                let objectiveDeletionButton = event.target;
+                let form = objectiveDeletionButton.closest('[data-requestForm]');
+                let objectiveId = form.querySelector('[data-objectiveId]').value;
+                let hiddenDeletionId = document.getElementById('deletion-modal-hidden-objectiveId');
+                hiddenDeletionId.value = objectiveId;
+                $('#objective-deletion-modal').modal('show');
+            }
         });
     </script>
 }

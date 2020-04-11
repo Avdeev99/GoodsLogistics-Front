@@ -31,6 +31,17 @@ namespace GoodsLogistics.Services.Data.Services
             return result;
         }
 
+        public async Task<ServiceResponseModel<List<OfficeModel>>> GetOfficesByCompanyId(string id)
+        {
+            var url = $"https://localhost:44380/company/{id}/offices";
+            var httpResponse = await _apiServiceProvider.GetAsync(
+                url,
+                true);
+
+            var result = await _responseService.CreateResponse<List<OfficeModel>>(httpResponse);
+            return result;
+        }
+
         public async Task<ServiceResponseModel<OfficeModel>> GetOfficeByKey(string key)
         {
             var url = $"https://localhost:44380/offices/{key}";

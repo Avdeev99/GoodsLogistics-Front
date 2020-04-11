@@ -32,8 +32,12 @@
                                     </a>
                                 </div>
                                 <div class="col-lg-4 col-sm-4 menu__items">@Html.ActionLink(Resources.Home, "Index", "Home")</div>
-                                <div class="col-lg-4 col-sm-4 menu__items">@Html.ActionLink(Resources.Orders, "GetObjectives", "Objective")</div>
-                                <div class="col-lg-4 col-sm-4 menu__items"></div>
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <div class="col-lg-4 col-sm-4 menu__items">@Html.ActionLink(Resources.Orders, "GetAllSorted", "Objective")</div>
+                                }
+
                             </div>
                         </div>
                         <div class="col-lg-5 col-sm-5 d-flex justify-content-end">

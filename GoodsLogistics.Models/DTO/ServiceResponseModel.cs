@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GoodsLogistics.Models.DTO
 {
-    public class ServiceResponseModel<T> where T : class
+    public class ServiceResponseModel<T>
     {
         public ServiceResponseModel() { }
 

@@ -1,8 +1,8 @@
 ﻿using GoodsLogistics.Models.Enums;
 
-namespace GoodsLogistics.ViewModels.DTO
+namespace GoodsLogistics.Models.DTO.Objective
 {
-    public class ObjectiveFilteringViewModel
+    public class ObjectiveFilteringModel
     {
         public SortingMethod SortingMethod { get; set; }
 

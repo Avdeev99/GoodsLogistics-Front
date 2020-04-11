@@ -135,6 +135,9 @@
   <data name="City" xml:space="preserve">
     <value>Місто</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрити</value>
+  </data>
   <data name="CompanyName" xml:space="preserve">
     <value>Назва компанії</value>
   </data>
@@ -269,6 +272,9 @@
   </data>
   <data name="Offices" xml:space="preserve">
     <value>Офіси</value>
+  </data>
+  <data name="OrderInformation" xml:space="preserve">
+    <value>Інформація про замовлення</value>
   </data>
   <data name="Orders" xml:space="preserve">
     <value>Замовлення</value>

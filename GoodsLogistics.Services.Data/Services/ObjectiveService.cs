@@ -32,6 +32,18 @@ namespace GoodsLogistics.Services.Data.Services
             return result;
         }
 
+        public async Task<ServiceResponseModel<List<ObjectiveModel>>> GetObjectivesByFilter(ObjectiveFilteringModel filter)
+        {
+            var url = "https://localhost:44380/objectives/filtered";
+            var httpResponse = await _apiServiceProvider.PostAsync(
+                url,
+                filter,
+                true);
+
+            var result = await _responseService.CreateResponse<List<ObjectiveModel>>(httpResponse);
+            return result;
+        }
+
         public async Task<ServiceResponseModel<ObjectiveModel>> GetObjectiveById(string id)
         {
             var url = $"https://localhost:44380/objectives/{id}";
@@ -75,6 +87,28 @@ namespace GoodsLogistics.Services.Data.Services
             await _apiServiceProvider.DeleteAsync(
                 url,
                 true);
+        }
+
+        public async Task<ServiceResponseModel<decimal>> GetObjectivesMinPrice()
+        {
+            var url = $"https://localhost:44380/objectives/price/min";
+            var httpResponse = await _apiServiceProvider.GetAsync(
+                url,
+                true);
+
+            var result = await _responseService.CreateResponse<decimal>(httpResponse);
+            return result;
+        }
+
+        public async Task<ServiceResponseModel<decimal>> GetObjectivesMaxPrice()
+        {
+            var url = $"https://localhost:44380/objectives/price/max";
+            var httpResponse = await _apiServiceProvider.GetAsync(
+                url,
+                true);
+
+            var result = await _responseService.CreateResponse<decimal>(httpResponse);
+            return result;
         }
     }
 }

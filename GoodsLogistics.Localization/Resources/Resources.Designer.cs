@@ -115,6 +115,15 @@ namespace GoodsLogistics.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company name.
         /// </summary>
         public static string CompanyName {
@@ -516,6 +525,15 @@ namespace GoodsLogistics.Localization.Resources {
         public static string Offices {
             get {
                 return ResourceManager.GetString("Offices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order information.
+        /// </summary>
+        public static string OrderInformation {
+            get {
+                return ResourceManager.GetString("OrderInformation", resourceCulture);
             }
         }
         

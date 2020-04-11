@@ -9,6 +9,8 @@ namespace GoodsLogistics.Services.Data.Services.Interfaces
     {
         Task<ServiceResponseModel<List<OfficeModel>>> GetOffices();
 
+        Task<ServiceResponseModel<List<OfficeModel>>> GetOfficesByCompanyId(string id);
+
         Task<ServiceResponseModel<OfficeModel>> GetOfficeByKey(string key);
 
         Task<ServiceResponseModel<OfficeModel>> CreateOffice(OfficeModel createRequestModel);
