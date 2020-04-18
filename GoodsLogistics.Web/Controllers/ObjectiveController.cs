@@ -36,7 +36,7 @@ namespace GoodsLogistics.Web.Controllers
             return View("Index", objectiveList);
         }
 
-        public async Task<IActionResult> Create(ObjectiveViewModel objectiveViewModel)
+        public async Task<IActionResult> Create(ObjectiveCreateRequestViewModel objectiveViewModel)
         {
             ModelState.Remove("ObjectiveId");
 
@@ -75,6 +75,27 @@ namespace GoodsLogistics.Web.Controllers
             return PartialView("_ObjectiveDetailsPartial", objectiveViewModel);
         }
 
+        public async Task<IActionResult> GetObjectiveForProvidersById(string objectiveId)
+        {
+            var serviceResponse = await _objectiveService.GetObjectiveById(objectiveId);
+            var objectiveViewModel = _mapper.Map<ObjectiveViewModel>(serviceResponse.Data);
+            return PartialView("_ObjectiveProviderDetailsPartial", objectiveViewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateObjectiveById(string objectiveId)
+        {
+            var serviceResponse = await _objectiveService.GetObjectiveById(objectiveId);
+            var objectiveViewModel = _mapper.Map<ObjectiveViewModel>(serviceResponse.Data);
+            return PartialView("_ObjectiveUpdatePartial", objectiveViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateObjectiveById(ObjectiveUpdateRequestViewModel updateRequestViewModel)
+        {
+            return Ok();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Delete(string objectiveId)
         {
@@ -86,6 +107,9 @@ namespace GoodsLogistics.Web.Controllers
         [HttpGet]
         public async  Task<IActionResult> GetAllSorted(ObjectiveListViewModel listViewModel)
         {
+            var email = User.FindFirst(ClaimTypes.Email).Value;
+            listViewModel.Filter.ReceiverCompanyEmail = email;
+
             var result = await GetSortedResult(listViewModel);
             return View("Index", result);
         }
@@ -93,15 +117,38 @@ namespace GoodsLogistics.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> AllSorted(ObjectiveListViewModel listViewModel)
         {
+            var email = User.FindFirst(ClaimTypes.Email).Value;
+            listViewModel.Filter.ReceiverCompanyEmail = email;
+
             var result = await GetSortedResult(listViewModel);
             return PartialView("_ObjectiveListPartial", result);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetAllForProviders(ObjectiveListViewModel listViewModel)
+        {
+            var companyId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            listViewModel.Filter.IsWithoutSender = true;
+            listViewModel.Filter.OnlyNotRequestedByCompanyId = companyId;
+
+            var result = await GetSortedResult(listViewModel);
+            return View("ProvidersObjectivesList", result);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> GetAllForProvidersPost(ObjectiveListViewModel listViewModel)
+        {
+            var companyId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            listViewModel.Filter.IsWithoutSender = true;
+            listViewModel.Filter.OnlyNotRequestedByCompanyId = companyId;
+
+            var result = await GetSortedResult(listViewModel);
+            return PartialView("_ProvidersObjectivesListPartial", result);
         }
 
         private async Task<ObjectiveListViewModel> GetSortedResult(ObjectiveListViewModel listViewModel)
         {
             var filter = _mapper.Map<ObjectiveFilteringModel>(listViewModel.Filter);
-            var email = User.FindFirst(ClaimTypes.Email).Value;
-            filter.ReceiverCompanyEmail = email;
 
             var serviceResponse = await _objectiveService.GetObjectivesByFilter(filter);
             if (!serviceResponse.IsSuccess)

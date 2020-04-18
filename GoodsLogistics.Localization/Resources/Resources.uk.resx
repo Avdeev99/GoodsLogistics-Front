@@ -120,6 +120,9 @@
   <data name="Address" xml:space="preserve">
     <value>Адреса</value>
   </data>
+  <data name="AddRule" xml:space="preserve">
+    <value>Додати правило</value>
+  </data>
   <data name="Advantages" xml:space="preserve">
     <value>ПЕРЕВАГИ</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="CurrentPassword" xml:space="preserve">
     <value>Поточний пароль</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Замовник</value>
   </data>
   <data name="DeletionConfirmation" xml:space="preserve">
     <value>Підтвердження видалення</value>
@@ -297,6 +303,9 @@
   <data name="Price" xml:space="preserve">
     <value>Ціна</value>
   </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Постачальник</value>
+  </data>
   <data name="Region" xml:space="preserve">
     <value>Область</value>
   </data>
@@ -308,6 +317,12 @@
   </data>
   <data name="Required" xml:space="preserve">
     <value>Це поле обов'язкове для заповнення.</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Роль</value>
+  </data>
+  <data name="Rules" xml:space="preserve">
+    <value>Правила</value>
   </data>
   <data name="SelectCity" xml:space="preserve">
     <value>Оберіть місто</value>
@@ -323,6 +338,9 @@
   </data>
   <data name="SelectRegion" xml:space="preserve">
     <value>Оберіть область</value>
+  </data>
+  <data name="SendRequest" xml:space="preserve">
+    <value>Відправити заявку</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Підтвердити</value>

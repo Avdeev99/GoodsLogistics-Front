@@ -1,0 +1,280 @@
+﻿@using System.Security.Claims
+@using GoodsLogistics.Localization.Resources
+@using GoodsLogistics.Models.Enums
+@model GoodsLogistics.ViewModels.DTO.ObjectiveListViewModel
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/priceRange.css">
+}
+
+<section class="apartments_section">
+    <div class="container">
+
+        @using (Html.BeginForm("GetObjectives", "Objective", FormMethod.Get, new { id = "sortForm" }))
+        {
+
+            <div class="row apartmentsFilter_section">
+                <div class="col-lg-5 apartmentsFilter_holder">
+                    <div class="row">
+                        <div class="col-lg-6 filterSelect_holder">
+                            <select class="filterSelect" name="listViewModel.Filter.SortingMethod">
+                                <!option value="" disabled="disabled" selected>@Resources.ObjectiveSortingSign</!option>
+                                <!option value="@SortingMethod.FromNew"
+                                         @if (Model.Filter.SortingMethod == SortingMethod.FromNew) { <text> selected</text>
+                                 }>
+                                    @Resources.FromNew
+                                </!option>
+                                <!option value="@SortingMethod.FromLast"
+                                         @if (Model.Filter.SortingMethod == SortingMethod.FromLast) { <text> selected</text>
+                                 }>
+                                    @Resources.FromLast
+                                </!option>
+                            </select>
+
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="div">
+                                <div class="wrapper">
+                                    <fieldset class="filter-price">
+
+                                        <div class="price-field">
+
+
+                                            @Html.TextBox("listViewModel.Filter.PriceFrom", Model.Filter.PriceFrom,
+                                                new { id = "lower", type = "range", min = Model.Filter.PriceFrom, max = Model.Filter.PriceTo })
+
+                                            @Html.TextBox("listViewModel.Filter.PriceTo", Model.Filter.PriceTo,
+                                                new { id = "upper", type = "range", min = Model.Filter.PriceFrom, max = Model.Filter.PriceTo })
+
+                                        </div>
+                                        <div class="price-wrap">
+                                            <span class="price-title"></span>
+                                            <div class="price-wrap-1">
+                                                <label for="one">$</label>
+                                                <input id="one" disabled>
+                                            </div>
+                                            <div class="price-wrap_line">–</div>
+                                            <div class="price-wrap-2">
+                                                <label for="two" class="priceRangeTo">$</label>
+                                                <input id="two" disabled>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <span class="filter_separator"></span>
+                    <span class="filter_price_title">@Resources.Price</span>
+
+                </div>
+                <div class="col-lg-7">
+                    <div class="row">
+
+                        <div class="col-lg-4 colLgWidthHolder">
+                            <select id="countrySelect" class="filterSelect" name="listViewModel.Filter.CountryId" data-countrySelect="countrySelect">
+                                <option value="" selected="selected">@Resources.SelectCountry</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 colLgWidthHolder">
+                            <select id="regionSelect" class="filterSelect" name="listViewModel.Filter.RegionId" data-regionSelect="regionSelect">
+                                <option value="" selected="selected">@Resources.SelectRegion</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4 colLgWidthHolder">
+                            <select id="citySelect" class="filterSelect" name="listViewModel.Filter.CityId" data-citySelect="citySelect">
+                                <option value="" selected="selected">@Resources.SelectCity</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        }
+
+        <div class="apartments_holder" id="objectives-holder">
+
+            @Html.Partial("_ProvidersObjectivesListPartial", Model)
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Details Modal -->
+<div class="modal fade" id="objective-details-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content objective-modal" id="objective-details-modal-content">
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/momentMin.js"></script>
+    <script src="~/js/daterangepicker.js"></script>
+    <script src="~/js/datePicker.js"></script>
+    <script src="~/js/priceRange.js"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <script>
+        function fillLocations(countrySelect, regionSelect, citySelect, autofill) {
+            regionSelect.disabled = true;
+            citySelect.disabled = true;
+
+            let countriesUrl = '@Url.Action("GetCountries", "Location")';
+            getJsonData(countriesUrl, 'GET').then(async countries => {
+                fillSelect(countrySelect, countries);
+            });
+
+            countrySelect.addEventListener('change',
+                async function(e) {
+                    await fillRegions(countrySelect, regionSelect, autofill);
+                    await fillCities(regionSelect, citySelect, autofill);
+                });
+
+            regionSelect.addEventListener('change',
+                async function() {
+                    await fillCities(regionSelect, citySelect, autofill);
+                });
+        }
+
+        async function getJsonData(url, httpMethod) {
+            let result = await fetch(url,
+                {
+                    method: httpMethod,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(async function(response) {
+                let locations = await response.json();
+                return locations;
+            });
+            return result;
+        }
+
+        function disableSelects(selects) {
+            for (let i = 0; i < selects.length; i++) {
+                selects[i].disabled = true;
+            }
+        }
+
+        function fillSelect(select, array) {
+            array.forEach(element => {
+                if (element.Name !== "") {
+                    let option = new Option(element.Name, element.Id);
+                    select.add(option);
+                }
+            });
+        }
+
+        async function fillRegions(countrySelect, regionSelect, autofill) {
+            let countryId = countrySelect.value;
+            let regionsUrl = '/Location/GetRegionsByCountryId?countryId=' + countryId;
+            let regions = await getJsonData(regionsUrl, 'GET');
+            regionSelect.disabled = false;
+            regionSelect.options.length = 0;
+
+            if (!autofill) {
+                let option = new Option("@Resources.SelectRegion", '');
+                regionSelect.add(option);
+            }
+
+            fillSelect(regionSelect, regions);
+        }
+
+        async function fillCities(regionSelect, citySelect, autofill) {
+            let regionId = regionSelect.value;
+            let citiesUrl = '/Location/GetCitiesByRegionId?regionId=' + regionId;
+            let cities = await getJsonData(citiesUrl, 'GET');
+            citySelect.disabled = false;
+            citySelect.options.length = 0;
+
+            if (!autofill) {
+                let option = new Option("@Resources.SelectCity", '');
+                citySelect.add(option);
+            }
+
+            fillSelect(citySelect, cities);
+        }
+    </script>
+
+    <script>
+        let countrySelect = document.getElementById('countrySelect');
+        let regionSelect = document.getElementById('regionSelect');
+        let citySelect = document.getElementById('citySelect');
+
+        fillLocations(countrySelect, regionSelect, citySelect, false);
+    </script>
+
+
+    <script>
+        function insertParamsToURL(params) {
+            return location.href.split('#')[0].split('?')[0] + '?' + params;
+        }
+
+        async function sorting(formData) {
+            await fetch('@Url.Action("GetAllForProvidersPost", "Objective")',
+                    {
+                        method: 'POST',
+                        body: new URLSearchParams(formData)
+                    })
+                .then(async function(response) {
+                    let productsHolder = document.getElementById("objectives-holder");
+                    productsHolder.innerHTML = await response.text();
+                    window.history.pushState("", "", insertParamsToURL(new URLSearchParams(formData)));
+                });
+        }
+
+        let form = document.getElementById("sortForm");
+        form.addEventListener("change",
+            async function(e) {
+
+                let formData = new FormData(form);
+
+                sorting(formData);
+            });
+    </script>
+
+    @*Get modals*@
+    <script>
+        let objectivesHolder = document.getElementById('objectives-holder');
+        objectivesHolder.addEventListener('click', async function (event) {
+            if (event.target.hasAttribute("data-objectiveDetails") || event.target.closest("[data-objectiveDetails]")) {
+                let button = event.target;
+                let form = button.closest('[data-requestForm]');
+                let id = form.querySelector('[data-objectiveId]').value;
+                let url = '/Objective/GetObjectiveForProvidersById?objectiveId=' + id;
+
+                await fetch(url,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(async function (response) {
+                        let content = await response.text();
+                        let modalContent = document.getElementById('objective-details-modal-content');
+                        modalContent.innerHTML = content;
+                        $('#objective-details-modal').modal('show');
+                    });
+            }
+
+            //if (event.target.hasAttribute("data-objectiveSendRequestButton") || event.target.closest("[data-objectiveSendRequestButton]")) {
+            //    let form = event.target.closest("[]");
+            //}
+        });
+    </script>
+}

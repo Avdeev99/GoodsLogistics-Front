@@ -13,6 +13,12 @@ body {
     position: relative;
 }
 
+ul,
+li {
+    display: block;
+}
+
+
 .tar {
     text-align: right;
 }
@@ -72,6 +78,26 @@ body {
     border-left: 5px solid #2196f3;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .08);
 }
+
+.objective-modal-rules-list li {
+    line-height: 26px;
+    padding-left: 20px;
+    display: block;
+    width: 300px;
+}
+
+    .objective-modal-rules-list li::before {
+        background: #2196f3;
+        border-radius: 50%;
+        content: "";
+        display: block;
+        height: 9px;
+        left: 15px;
+        margin-top: 8px;
+        position: absolute;
+        width: 9px;
+    }
+
 
 
 .button {

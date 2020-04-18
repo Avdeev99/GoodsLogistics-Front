@@ -23,6 +23,11 @@ namespace GoodsLogistics.Auth.Extensions
                 new Claim(ClaimTypes.Email, user.Email)
             };
 
+            if (user.Role != null)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, user.Role.Name));
+            }
+
             return claims;
         }
     }

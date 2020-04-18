@@ -1,4 +1,5 @@
-﻿@using GoodsLogistics.Localization.Resources
+﻿@using System.Security.Claims
+@using GoodsLogistics.Localization.Resources
 @model GoodsLogistics.ViewModels.DTO.OfficeViewModel
 
 @{
@@ -51,7 +52,7 @@
                 </div>
                 <div>
                     @Html.ActionLink(Resources.Edit, "Update", "Office", new { key = Model.Key }) |
-                    @Html.ActionLink(Resources.BackToOfficeList, "GetAll", "Office")
+                    @Html.ActionLink(Resources.BackToOfficeList, "GetAllByCompanyIdViewResult", "Office", new { id = User.FindFirst(ClaimTypes.NameIdentifier).Value})
                 </div>
 
             </div>

@@ -1,4 +1,5 @@
-﻿@using GoodsLogistics.Localization.Resources
+﻿
+@using GoodsLogistics.Localization.Resources
 @model GoodsLogistics.ViewModels.DTO.ObjectiveListViewModel
 
 <div class="row">
@@ -8,7 +9,7 @@
         <div class="col-lg-6 notRespondRequest_holder">
             <div class="notRespondRequest_item">
 
-                <form data-requestForm="requestForm" action="@Url.Action("", "")" method="post">
+                <form data-requestForm="requestForm" action="@Url.Action("", "")" method="post" data-objectiveSendRequestForm="objectiveSendRequestForm">
 
                     <input type="hidden" name="ObjectiveId" value="@objective.ObjectiveId" data-objectiveId="objectiveId" />
 
@@ -23,24 +24,19 @@
                         <div class="col-lg-6 tar">@Resources.EndDate: @objective.EndDate.ToShortDateString()</div>
                     </div>
                     <div class="row notRespondRequest_item_description_holder">
-                        <div class="col-lg-6">@Resources.Provider: @objective.SenderCompany?.Name</div>
+                        <div class="col-lg-6">@Resources.Customer: @objective.ReceiverCompany.Name</div>
                         <div class="col-lg-6 tar">@Resources.Price: @objective.Price</div>
                     </div>
                     <div class="notRespondRequest_item_description_line"></div>
-                    <div class="row respond_button_holder d-flex justify-content-between" data-requestButtonHolder="requestButtonHolder">
-                        <div class="col-lg-2">
-                            <button type="button" class="button_empty bg-color" data-objectiveDeletionButton="objective-deletion-button">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </div>
-                        <div class="col-lg-4">
+                    <div class="row respond_button_holder d-flex justify-content-end" data-requestButtonHolder="requestButtonHolder">
+                        <div class="col-lg-6">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <button type="button" class="button" data-updateObjective="updateObjective">
-                                        <i class="far fa-edit"></i>
+                                <div class="col-lg-8">
+                                    <button type="button" class="button_empty bg-color" data-objectiveSendRequestButton="objectiveSendRequestButton">
+                                        @Resources.SendRequest
                                     </button>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <button type="button" class="button" data-objectiveDetails="objectiveDetails">
                                         <i class="fas fa-info-circle"></i>
                                     </button>

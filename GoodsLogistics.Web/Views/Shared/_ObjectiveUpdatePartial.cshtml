@@ -1,0 +1,111 @@
+﻿@using GoodsLogistics.Localization.Resources
+@using GoodsLogistics.Models.Enums
+@model GoodsLogistics.ViewModels.DTO.ObjectiveViewModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLongTitle">@Resources.OrderInformation</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body" id="objective-update-modal-body">
+    <div class="form-group row">
+        @Html.HiddenFor(m => m.ObjectiveId)
+        <div class="col-lg-5">
+            <label>@Resources.Country: @Model.Location.City.Region.Country.Name</label>
+        </div>
+        <div class="col-lg-3">
+            <label>@Resources.Region: @Model.Location.City.Region.Name</label>
+        </div>
+        <div class="col-lg-4">
+            <label>@Resources.City: @Model.Location.City.Name</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>@Resources.Address: @Model.Location.Address</label>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-lg-5">
+            <label>@Resources.CreationDate: @Model.CreationDate.ToShortDateString()</label>
+        </div>
+        <div class="col-lg-3">
+            <label>@Resources.GoodName: @Model.Good.Name</label>
+        </div>
+        <div class="col-lg-4">
+            <label>@Resources.GoodWeight: @Model.Good.Weight</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-lg-4">
+            <label>@Resources.DeliveryDate</label>
+            <input type="datetime-local" class="input" name="OrderDate" value="@Model.OrderDate.ToShortDateString()" />
+        </div>
+        <div class="col-lg-3">
+            <label>@Resources.Frequency</label>
+            @*<select id="deliveryFrequency" class="input" name="Frequency">
+                    <option value="0" selected="selected">@Resources.SelectFrequency</option>
+                    <option value="1">@Resources.EveryDay</option>
+                    <option value="2">@Resources.EveryWeek</option>
+                    <option value="3">@Resources.EveryMonth</option>
+                </select>*@
+            @Html.DropDownListFor(model => model.Frequency,
+                Html.GetEnumSelectList<OrderFrequency>(), Resources.SelectFrequency,
+                new { @class = "input", placeholder = Resources.SelectFrequency, required = "required" })
+        </div>
+        <div class="col-lg-4" date>
+            <label>@Resources.EndDate</label>
+            @*<input type="date" class="input" name="EndDate" value="@Model.EndDate.ToShortDateString()" />*@
+            @*@Html.EditorFor(model => model.EndDate, new { @class = "input" })*@
+            <input asp-for="EndDate" type="date" class="input" />
+        </div>
+    </div>
+
+    <div class="form-group" data-rulesBlockHolder="rulesBlockHolder">
+        <label>@Resources.Rules</label>
+        @if (Model.Rules != null && Model.Rules.Any())
+        {
+            @foreach (var rule in Model.Rules)
+            {
+                <div class="row" data-ruleItemBlock="ruleItemBlock">
+                    <div class="col-lg-10">
+                        <textarea name="Rules" class="w-100" rows="4" required>@rule.Content</textarea>
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" class="button_empty bg-color" data-deleteRuleButton="deleteRuleButton">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            }
+
+
+
+        }
+
+        @if (Model.Rules != null && !Model.Rules.Any())
+        {
+            <div class="row" data-ruleItemBlock="ruleItemBlock">
+                <div class="col-lg-10">
+                    <textarea name="Rules" class="w-100" rows="4" required></textarea>
+                </div>
+                <div class="col-lg-2">
+                    <button type="button" class="button_empty bg-color" data-deleteRuleButton="deleteRuleButton">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+        }
+
+        <div data-addRuleLinkHolder="addRuleLinkHolder">
+            <a href="#" data-addRuleLink="addRuleLink">@Resources.AddRule</a>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">@Resources.Close</button>
+    <button type="button" class="btn btn-primary">@Resources.Submit</button>
+</div>
+

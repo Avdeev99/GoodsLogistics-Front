@@ -1,17 +1,28 @@
-﻿@using GoodsLogistics.Localization.Resources
-<div class="account_menu">
+﻿@using System.Security.Claims
+@using GoodsLogistics.Localization.Resources
+    <div class="account_menu">
 
-    <div class="account_menu_item">@Html.ActionLink(Resources.PersonalData, "Index", "Account")</div>
-    <div class="account_menu_item">@Html.ActionLink(Resources.ChangePassword, "ChangePassword", "Account")</div>
-    <div class="account_menu_item">@Html.ActionLink(Resources.Offices, "GetAll", "Office")</div>
-    <div class="account_menu_item">
-        @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        <div class="account_menu_item">@Html.ActionLink(Resources.PersonalData, "Index", "Account")</div>
+        <div class="account_menu_item">@Html.ActionLink(Resources.ChangePassword, "ChangePassword", "Account")</div>
+
+        @if (User.IsInRole("Customer"))
         {
-            @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Exit</a>
+            <div class="account_menu_item">@Html.ActionLink(Resources.Offices, "GetAllByCompanyIdViewResult", "Office", new { id = User.FindFirst(ClaimTypes.NameIdentifier).Value})</div>
         }
+
+        @if (User.IsInRole("Provider"))
+        {
+            <div class="account_menu_item">@Html.ActionLink(Resources.Orders, "GetAllByCompanyId", "Request", new { id = User.FindFirst(ClaimTypes.NameIdentifier).Value})</div>
+        }
+
+        <div class="account_menu_item">
+            @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Exit</a>
+            }
+        </div>
     </div>
-</div>
 
 
 

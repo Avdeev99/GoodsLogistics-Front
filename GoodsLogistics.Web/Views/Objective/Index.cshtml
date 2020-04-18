@@ -118,114 +118,138 @@
     </div>
 </section>
 
-
-@*Creation Modal*@
-<div class="modal fade" id="order-creation-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <form method="post" action="@Url.Action("Create", "Objective")">
-            <div class="modal-content objective-modal">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">@Resources.NewOrder</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label>@Resources.Location</label>
-                    <div class="form-group row">
-                        <div class="col-lg-4">
-                            <input type="radio" id="office" name="location" value="office" checked data-locationsRadio="locationsRadio">
-                            <label for="office">@Resources.Office</label>
-                        </div>
-                        <div class="col-lg-4">
-                            <input type="radio" id="address" name="location" value="address" data-locationsRadio="locationsRadio">
-                            <label for="address">@Resources.Address</label>
-                        </div>
+<div id="objective-edit-modals-holder">
+    @*Creation Modal*@
+    <div class="modal fade" id="order-creation-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <form method="post" action="@Url.Action("Create", "Objective")">
+                <div class="modal-content objective-modal">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">@Resources.NewOrder</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-
-                    <div class="form-group" id="office-create-group">
-                        <label>@Resources.Office</label>
-                        <select id="officeSelect" class="input" name="Location.OfficeKey">
-                            <option value="" selected="selected">@Resources.SelectOffice</option>
-                        </select>
-                    </div>
-
-                    <div class="hide" id="address-create-group">
+                    <div class="modal-body">
+                        <label>@Resources.Location</label>
                         <div class="form-group row">
                             <div class="col-lg-4">
-                                <label>@Resources.Country</label>
-                                <select id="countryCreateSelect" class="input">
-                                    <option value="" selected="selected">@Resources.SelectCountry</option>
-                                </select>
+                                <input type="radio" id="office" name="location" value="office" checked data-locationsRadio="locationsRadio">
+                                <label for="office">@Resources.Office</label>
                             </div>
                             <div class="col-lg-4">
-                                <label>@Resources.Region</label>
-                                <select id="regionCreateSelect" class="input">
-                                    <option value="" selected="selected">@Resources.SelectRegion</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-4">
-                                <label>@Resources.City</label>
-                                <select id="cityCreateSelect" class="input" name="Location.CityId">
-                                    <option value="" selected="selected">@Resources.SelectCity</option>
-                                </select>
+                                <input type="radio" id="address" name="location" value="address" data-locationsRadio="locationsRadio">
+                                <label for="address">@Resources.Address</label>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label>@Resources.Address</label>
-                            <input class="input" placeholder="@Resources.Address" minlength="6" name="Location.Address" />
-                            @Html.ValidationMessage("address", "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-lg-4">
-                            <label>@Resources.DeliveryDate</label>
-                            <input type="datetime-local" class="input" name="OrderDate" />
-                        </div>
-                        <div class="col-lg-4">
-                            <label>@Resources.Frequency</label>
-                            <select id="deliveryFrequency" class="input" name="Frequency">
-                                <option value="0" selected="selected">@Resources.SelectFrequency</option>
-                                <option value="1">@Resources.EveryDay</option>
-                                <option value="2">@Resources.EveryWeek</option>
-                                <option value="3">@Resources.EveryMonth</option>
+                        <div class="form-group" id="office-create-group">
+                            <label>@Resources.Office</label>
+                            <select id="officeSelect" class="input" name="Location.OfficeKey">
+                                <option value="" selected="selected">@Resources.SelectOffice</option>
                             </select>
                         </div>
-                        <div class="col-lg-4">
-                            <label>@Resources.EndDate</label>
-                            <input type="date" class="input" name="EndDate" />
-                        </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <div class="col-lg-6">
-                            <label>@Resources.GoodName</label>
-                            <input class="input" placeholder="@Resources.GoodName" name="Good.Name" />
-                        </div>
-                        <div class="col-lg-3">
-                            <label>@Resources.GoodWeight</label>
-                            <input type="number" name="Good.Weight" class="input" value="1" required="required" min="1" max="500" step="0.1" />
-                        </div>
-                        <div class="col-lg-3">
-                            <label>@Resources.Price</label>
-                            <input type="number" name="Price" class="input" value="1" required="required" min="1" step="0.01" />
-                        </div>
-                    </div>
+                        <div class="hide" id="address-create-group">
+                            <div class="form-group row">
+                                <div class="col-lg-4">
+                                    <label>@Resources.Country</label>
+                                    <select id="countryCreateSelect" class="input">
+                                        <option value="" selected="selected">@Resources.SelectCountry</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>@Resources.Region</label>
+                                    <select id="regionCreateSelect" class="input">
+                                        <option value="" selected="selected">@Resources.SelectRegion</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>@Resources.City</label>
+                                    <select id="cityCreateSelect" class="input" name="Location.CityId">
+                                        <option value="" selected="selected">@Resources.SelectCity</option>
+                                    </select>
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <label>@Resources.Address</label>
+                                <input class="input" placeholder="@Resources.Address" minlength="6" name="Location.Address" />
+                                @Html.ValidationMessage("address", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-lg-5">
+                                <label>@Resources.DeliveryDate</label>
+                                <input type="datetime-local" class="input" name="OrderDate" />
+                            </div>
+                            <div class="col-lg-3">
+                                <label>@Resources.Frequency</label>
+                                <select id="deliveryFrequency" class="input" name="Frequency">
+                                    <option value="0" selected="selected">@Resources.SelectFrequency</option>
+                                    <option value="1">@Resources.EveryDay</option>
+                                    <option value="2">@Resources.EveryWeek</option>
+                                    <option value="3">@Resources.EveryMonth</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>@Resources.EndDate</label>
+                                <input type="date" class="input" name="EndDate" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>@Resources.GoodName</label>
+                                <input class="input" placeholder="@Resources.GoodName" name="Good.Name" />
+                            </div>
+                            <div class="col-lg-3">
+                                <label>@Resources.GoodWeight</label>
+                                <input type="number" name="Good.Weight" class="input" value="1" required="required" min="1" max="500" step="0.1" />
+                            </div>
+                            <div class="col-lg-3">
+                                <label>@Resources.Price</label>
+                                <input type="number" name="Price" class="input" value="1" required="required" min="1" step="0.01" />
+                            </div>
+                        </div>
+
+                        <div class="form-group" data-rulesBlockHolder="rulesBlockHolder">
+                            <label>@Resources.Rules</label>
+                            <div class="row" data-ruleItemBlock="ruleItemBlock">
+                                <div class="col-lg-10">
+                                    <textarea name="Rules" class="w-100" rows="4" required></textarea>
+                                </div>
+                                <div class="col-lg-2">
+                                    <button type="button" class="button_empty bg-color" data-deleteRuleButton="deleteRuleButton">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div data-addRuleLinkHolder="addRuleLinkHolder">
+                                <a href="#" data-addRuleLink="addRuleLink">@Resources.AddRule</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="submit" class="button w-25">@Resources.Submit</button>
+                    </div>
                 </div>
-                <div class="modal-footer d-flex justify-content-end">
-                    <button type="submit" class="button w-25">@Resources.Submit</button>
-                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Update Modal -->
+    <div class="modal fade" id="objective-update-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content objective-modal" id="objective-update-modal-content">
             </div>
-        </form>
+        </div>
     </div>
 </div>
-
-
-
-
 
 
 
@@ -253,13 +277,15 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">@Resources.No</button>
                 <form action="@Url.Action("Delete", "Objective")" id="objective-deletion-form" method="post">
-                    <input type="hidden" value="" id="deletion-modal-hidden-objectiveId" name="objectiveId"/>
+                    <input type="hidden" value="" id="deletion-modal-hidden-objectiveId" name="objectiveId" />
                     <button type="submit" class="btn btn-primary">@Resources.Yes</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
 
 
 
@@ -334,7 +360,7 @@
                 let option = new Option("@Resources.SelectRegion", '');
                 regionSelect.add(option);
             }
-            
+
             fillSelect(regionSelect, regions);
         }
 
@@ -372,7 +398,7 @@
         var locationsRadioGroup = document.querySelectorAll("[data-locationsRadio]");
         for (let i = 0; i < locationsRadioGroup.length; i++) {
             locationsRadioGroup[i].addEventListener('change',
-                function() {
+                function () {
                     let officeGroup = document.getElementById('office-create-group');
                     officeGroup.classList.toggle('hide');
 
@@ -383,9 +409,9 @@
                 });
         }
 
-        (function() {
+        (function () {
             $("#order-creation-modal").on("hidden.bs.modal",
-                function() {
+                function () {
                     $(this).find('form').trigger('reset');
 
                     let officeGroup = document.getElementById('office-create-group');
@@ -398,6 +424,8 @@
                     if (!addressGroup.classList.contains('hide')) {
                         addressGroup.classList.add('hide');
                     }
+
+                    $('[data-ruleItemBlock]').slice(1).remove();
                 });
         })();
     </script>
@@ -443,9 +471,10 @@
             });
     </script>
 
+    @*Get, Update, Delete modals*@
     <script>
         let objectivesHolder = document.getElementById('objectives-holder');
-        objectivesHolder.addEventListener('click', async function(event) {
+        objectivesHolder.addEventListener('click', async function (event) {
             if (event.target.hasAttribute("data-objectiveDetails") || event.target.closest("[data-objectiveDetails]")) {
                 let button = event.target;
                 let form = button.closest('[data-requestForm]');
@@ -458,12 +487,12 @@
                         headers: {
                             'Content-Type': 'application/json'
                         }
-                    }).then(async function(response) {
-                    let content = await response.text();
-                    let modalContent = document.getElementById('objective-details-modal-content');
-                    modalContent.innerHTML = content;
-                    $('#objective-details-modal').modal('show');
-                });
+                    }).then(async function (response) {
+                        let content = await response.text();
+                        let modalContent = document.getElementById('objective-details-modal-content');
+                        modalContent.innerHTML = content;
+                        $('#objective-details-modal').modal('show');
+                    });
             }
 
             if (event.target.hasAttribute("data-objectiveDeletionButton") || event.target.closest("[data-objectiveDeletionButton]")) {
@@ -473,6 +502,57 @@
                 let hiddenDeletionId = document.getElementById('deletion-modal-hidden-objectiveId');
                 hiddenDeletionId.value = objectiveId;
                 $('#objective-deletion-modal').modal('show');
+            }
+
+            if (event.target.hasAttribute("data-updateObjective") || event.target.closest("[data-updateObjective]")) {
+                let button = event.target;
+                let form = button.closest('[data-requestForm]');
+                let id = form.querySelector('[data-objectiveId]').value;
+                let url = '/Objective/UpdateObjectiveById?objectiveId=' + id;
+
+                await fetch(url,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(async function (response) {
+                        let content = await response.text();
+                        let modalContent = document.getElementById('objective-update-modal-content');
+                        modalContent.innerHTML = content;
+                        $('#objective-update-modal').modal('show');
+                    });
+            }
+        });
+    </script>
+
+    @*Rules*@
+    <script>
+        let objectiveEditModalsHolder = document.getElementById('objective-edit-modals-holder');
+        objectiveEditModalsHolder.addEventListener('click', async function (event) {
+            if (event.target.hasAttribute("data-addRuleLink") || event.target.closest("[data-addRuleLink]")) {
+                let link = event.target;
+                let rulesBlockHolder = link.closest('[data-rulesBlockHolder]');
+                let ruleItemBlock = document.createElement('div');
+                ruleItemBlock.className = 'row';
+                ruleItemBlock.setAttribute('data-ruleItemBlock', 'ruleItemBlock');
+                let content = ` <div class="col-lg-10">
+                    <textarea name="Rules" class="w-100" rows="4" required></textarea>
+                </div>
+                <div class="col-lg-2">
+                    <button type="button" class="button_empty bg-color" data-deleteRuleButton="deleteRuleButton">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </div>`;
+                ruleItemBlock.innerHTML = content;
+                let linkHolder = link.closest('[data-addRuleLinkHolder]');
+                rulesBlockHolder.insertBefore(ruleItemBlock, linkHolder);
+            }
+
+            if (event.target.hasAttribute("data-deleteRuleButton") || event.target.closest("[data-deleteRuleButton]")) {
+                let link = event.target;
+                let ruleItemBlock = link.closest('[data-ruleItemBlock]');
+                ruleItemBlock.remove();
             }
         });
     </script>

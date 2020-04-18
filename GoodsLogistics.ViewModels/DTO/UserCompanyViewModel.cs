@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using GoodsLogistics.Localization.Resources;
 using GoodsLogistics.Models.DTO.Office;
+using GoodsLogistics.Models.DTO.UserCompany;
 
 namespace GoodsLogistics.ViewModels.DTO
 {
@@ -21,5 +22,9 @@ namespace GoodsLogistics.ViewModels.DTO
         public string Password { get; set; }
 
         public List<OfficeModel> Offices { get; set; }
+
+        public RoleModel Role { get; set; }
+
+        public string RoleId { get; set; }
     }
 }

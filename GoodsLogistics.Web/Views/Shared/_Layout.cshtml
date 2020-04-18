@@ -33,9 +33,14 @@
                                 </div>
                                 <div class="col-lg-4 col-sm-4 menu__items">@Html.ActionLink(Resources.Home, "Index", "Home")</div>
 
-                                @if (User.Identity.IsAuthenticated)
+                                @if (User.IsInRole("Customer"))
                                 {
                                     <div class="col-lg-4 col-sm-4 menu__items">@Html.ActionLink(Resources.Orders, "GetAllSorted", "Objective")</div>
+                                }
+
+                                @if (User.IsInRole("Provider"))
+                                {
+                                    <div class="col-lg-4 col-sm-4 menu__items">@Html.ActionLink(Resources.Orders, "GetAllForProviders", "Objective")</div>
                                 }
 
                             </div>

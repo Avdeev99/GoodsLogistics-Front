@@ -112,5 +112,17 @@ namespace GoodsLogistics.Web.Controllers
             var result = JsonConvert.SerializeObject(serviceResponse.Data);
             return result;
         }
+
+        public async Task<IActionResult> GetAllByCompanyIdViewResult(string companyId)
+        {
+            var serviceResponse = await _officeService.GetOfficesByCompanyId(companyId);
+            if (!serviceResponse.IsSuccess)
+            {
+                return null;
+            }
+
+            var officeViewModels = _mapper.Map<List<OfficeViewModel>>(serviceResponse.Data);
+            return View("Offices", officeViewModels);
+        }
     }
 }

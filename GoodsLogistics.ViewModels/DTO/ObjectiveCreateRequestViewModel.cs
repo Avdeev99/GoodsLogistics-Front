@@ -4,22 +4,21 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using GoodsLogistics.Localization.Resources;
 using GoodsLogistics.Models.DTO;
-using GoodsLogistics.Models.DTO.UserCompany;
 using GoodsLogistics.Models.Enums;
 
 namespace GoodsLogistics.ViewModels.DTO
 {
-    public class ObjectiveViewModel : IValidatableObject
+    public class ObjectiveCreateRequestViewModel : IValidatableObject
     {
         public string ObjectiveId { get; set; }
 
-        public string SenderCompanyId { get; set; }
+        //public string SenderCompanyId { get; set; }
 
-        public UserCompanyModel SenderCompany { get; set; }
+        //public UserCompanyModel SenderCompany { get; set; }
 
-        public string ReceiverCompanyId { get; set; }
+        //public string ReceiverCompanyId { get; set; }
 
-        public UserCompanyModel ReceiverCompany { get; set; }
+        //public UserCompanyModel ReceiverCompany { get; set; }
 
         [DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime CreationDate { get; set; }
@@ -41,7 +40,7 @@ namespace GoodsLogistics.ViewModels.DTO
             ErrorMessageResourceName = "Required")]
         public decimal Price { get; set; }
 
-        public List<RuleModel> Rules { get; set; }
+        public List<string> Rules { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -61,7 +60,7 @@ namespace GoodsLogistics.ViewModels.DTO
                     message = "Order date must be greater than current time";
                 }
 
-                var invalidMembers = new List<string> {nameof(OrderDate)};
+                var invalidMembers = new List<string> { nameof(OrderDate) };
                 var error = new ValidationResult(message, invalidMembers);
                 result.Add(error);
             }

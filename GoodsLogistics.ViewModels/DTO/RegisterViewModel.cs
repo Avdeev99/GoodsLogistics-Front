@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using GoodsLogistics.Localization.Resources;
+using GoodsLogistics.Models.Enums;
 
 namespace GoodsLogistics.ViewModels.DTO
 {
@@ -34,6 +35,8 @@ namespace GoodsLogistics.ViewModels.DTO
         [Compare("Password", ErrorMessageResourceType = typeof(Resources),
             ErrorMessageResourceName = "PasswordCompareMessage")]
         public string ConfirmPassword { get; set; }
+
+        public UserRoles Role { get; set; }
 
         public string ReturnUrl { get; set; } = "/";
     }
