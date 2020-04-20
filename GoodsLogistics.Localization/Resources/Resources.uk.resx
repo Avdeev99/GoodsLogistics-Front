@@ -315,6 +315,9 @@
   <data name="Remove" xml:space="preserve">
     <value>Вилучити</value>
   </data>
+  <data name="RequestСonfirmation" xml:space="preserve">
+    <value>Підтвердження заявки</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>Це поле обов'язкове для заповнення.</value>
   </data>
@@ -336,11 +339,17 @@
   <data name="SelectOffice" xml:space="preserve">
     <value>Оберіть офіс</value>
   </data>
+  <data name="SelectProvider" xml:space="preserve">
+    <value>Оберіть постачальника</value>
+  </data>
   <data name="SelectRegion" xml:space="preserve">
     <value>Оберіть область</value>
   </data>
   <data name="SendRequest" xml:space="preserve">
     <value>Відправити заявку</value>
+  </data>
+  <data name="SendRequestConfirmationMessage" xml:space="preserve">
+    <value>Ви впевнені, що хочете надіслати запит на виконання цього замовлення?</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Підтвердити</value>

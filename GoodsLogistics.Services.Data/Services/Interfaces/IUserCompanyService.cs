@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GoodsLogistics.Models.DTO;
 using GoodsLogistics.Models.DTO.UserCompany;
 
@@ -11,5 +12,7 @@ namespace GoodsLogistics.Services.Data.Services.Interfaces
         Task<ServiceResponseModel<UserCompanyModel>> UpdateUserCompany(
             string email,
             UserCompanyUpdateRequestModel updateRequestModel);
+
+        Task<ServiceResponseModel<List<UserCompanyModel>>> GetUserCompaniesByObjectiveId(string objectiveId);
     }
 }

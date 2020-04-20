@@ -15,16 +15,19 @@ namespace GoodsLogistics.Web.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IObjectiveService _objectiveService;
+        private readonly IUserCompanyService _userCompanyService;
         private readonly IOfficeService _officeService;
 
         public ObjectiveController(
             IMapper mapper, 
             IObjectiveService objectiveService, 
-            IOfficeService officeService)
+            IOfficeService officeService, 
+            IUserCompanyService userCompanyService)
         {
             _mapper = mapper;
             _objectiveService = objectiveService;
             _officeService = officeService;
+            _userCompanyService = userCompanyService;
         }
 
         public async Task<IActionResult> GetObjectives(ObjectiveListViewModel filteringModel)
@@ -86,14 +89,38 @@ namespace GoodsLogistics.Web.Controllers
         public async Task<IActionResult> UpdateObjectiveById(string objectiveId)
         {
             var serviceResponse = await _objectiveService.GetObjectiveById(objectiveId);
-            var objectiveViewModel = _mapper.Map<ObjectiveViewModel>(serviceResponse.Data);
+            var objectiveViewModel = _mapper.Map<ObjectiveUpdateViewModel>(serviceResponse.Data);
+            var providersServiceResponse = await _userCompanyService.GetUserCompaniesByObjectiveId(objectiveId);
+            if (providersServiceResponse.IsSuccess)
+            {
+                objectiveViewModel.Providers = providersServiceResponse.Data;
+            }
+
             return PartialView("_ObjectiveUpdatePartial", objectiveViewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateObjectiveById(ObjectiveUpdateRequestViewModel updateRequestViewModel)
+        public async Task<IActionResult> UpdateObjective(ObjectiveUpdateViewModel updateViewModel)
         {
-            return Ok();
+            var providersServiceResponse = await _userCompanyService.GetUserCompaniesByObjectiveId(updateViewModel.ObjectiveId);
+
+            if (!ModelState.IsValid)
+            {
+                updateViewModel.Providers = providersServiceResponse.Data;
+                return PartialView("_ObjectiveUpdatePartial", updateViewModel);
+            }
+
+            var updateModel = _mapper.Map<ObjectiveUpdateRequestModel>(updateViewModel);
+
+            var serviceResponse =  _objectiveService.UpdateObjective(updateViewModel.ObjectiveId, updateModel).GetAwaiter().GetResult();
+            if (!serviceResponse.IsSuccess)
+            {
+                ModelState.AddModelErrors(serviceResponse.Errors);
+                
+            }
+
+            updateViewModel.Providers = providersServiceResponse.Data;
+            return PartialView("_ObjectiveUpdatePartial", updateViewModel);
         }
 
         [HttpPost]

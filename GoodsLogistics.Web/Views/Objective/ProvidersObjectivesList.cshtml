@@ -119,6 +119,30 @@
     </div>
 </div>
 
+<!-- Request confirmation modal -->
+<div class="modal fade" id="objective-request-confirmation-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">@Resources.RequestСonfirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Resources.SendRequestConfirmationMessage
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">@Resources.No</button>
+                <form action="@Url.Action("Create", "Request")" id="objective-deletion-form" method="post">
+                    <input type="hidden" value="" id="confirmation-request-modal-hidden-objectiveId" name="objectiveId" />
+                    <button type="submit" class="btn btn-primary">@Resources.Yes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @section Scripts {
     <script src="~/js/jquery.js"></script>
@@ -270,6 +294,15 @@
                         modalContent.innerHTML = content;
                         $('#objective-details-modal').modal('show');
                     });
+            }
+
+            if (event.target.hasAttribute("data-objectiveSendRequestButton") || event.target.closest("[data-objectiveSendRequestButton]")) {
+                let sendRequestButton = event.target;
+                let form = sendRequestButton.closest('[data-requestForm]');
+                let objectiveId = form.querySelector('[data-objectiveId]').value;
+                let hiddenDeletionId = document.getElementById('confirmation-request-modal-hidden-objectiveId');
+                hiddenDeletionId.value = objectiveId;
+                $('#objective-request-confirmation-modal').modal('show');
             }
 
             //if (event.target.hasAttribute("data-objectiveSendRequestButton") || event.target.closest("[data-objectiveSendRequestButton]")) {

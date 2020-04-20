@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using GoodsLogistics.Auth.Providers.Interfaces;
 using GoodsLogistics.Models.DTO;
@@ -40,6 +41,17 @@ namespace GoodsLogistics.Services.Data.Services
                 true);
 
             var result = await _responseService.CreateResponse<UserCompanyModel>(httpResponse);
+            return result;
+        }
+
+        public async Task<ServiceResponseModel<List<UserCompanyModel>>> GetUserCompaniesByObjectiveId(string objectiveId)
+        {
+            var url = $"https://localhost:44380/users/requests/objectives/{objectiveId}";
+            var httpResponse = await _apiServiceProvider.GetAsync(
+                url,
+                true);
+
+            var result = await _responseService.CreateResponse<List<UserCompanyModel>>(httpResponse);
             return result;
         }
     }

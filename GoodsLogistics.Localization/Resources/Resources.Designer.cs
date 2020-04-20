@@ -655,6 +655,15 @@ namespace GoodsLogistics.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Request сonfirmation.
+        /// </summary>
+        public static string RequestСonfirmation {
+            get {
+                return ResourceManager.GetString("RequestСonfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This field is required..
         /// </summary>
         public static string Required {
@@ -718,6 +727,15 @@ namespace GoodsLogistics.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select provider.
+        /// </summary>
+        public static string SelectProvider {
+            get {
+                return ResourceManager.GetString("SelectProvider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select region.
         /// </summary>
         public static string SelectRegion {
@@ -732,6 +750,15 @@ namespace GoodsLogistics.Localization.Resources {
         public static string SendRequest {
             get {
                 return ResourceManager.GetString("SendRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to send request on executing this order?.
+        /// </summary>
+        public static string SendRequestConfirmationMessage {
+            get {
+                return ResourceManager.GetString("SendRequestConfirmationMessage", resourceCulture);
             }
         }
         

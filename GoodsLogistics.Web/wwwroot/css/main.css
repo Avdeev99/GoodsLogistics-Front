@@ -678,11 +678,12 @@ li {
 }
 
 .avdertisement_img {
-    background: url('../img/Reduce.jpg');
+    margin-top: 150px;
+    background: url('../img/delivery.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
+    height: 70%;
 }
 
 .advertisement_firstTitle,
@@ -709,7 +710,7 @@ li {
 
 .paralax_section {
     padding: 130px 100px;
-    background: url('../img/tree.jpg');
+    background: url('../img/road.jpg');
     background-position: top;
     background-attachment: fixed;
     background-size: cover;

@@ -537,13 +537,13 @@
                 ruleItemBlock.className = 'row';
                 ruleItemBlock.setAttribute('data-ruleItemBlock', 'ruleItemBlock');
                 let content = ` <div class="col-lg-10">
-                    <textarea name="Rules" class="w-100" rows="4" required></textarea>
-                </div>
-                <div class="col-lg-2">
-                    <button type="button" class="button_empty bg-color" data-deleteRuleButton="deleteRuleButton">
-                        <i class="far fa-trash-alt"></i>
-                    </button>
-                </div>`;
+                            <textarea name="Rules" class="w-100" rows="4" required></textarea>
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="button" class="button_empty bg-color" data-deleteRuleButton="deleteRuleButton">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </div>`;
                 ruleItemBlock.innerHTML = content;
                 let linkHolder = link.closest('[data-addRuleLinkHolder]');
                 rulesBlockHolder.insertBefore(ruleItemBlock, linkHolder);
@@ -553,6 +553,35 @@
                 let link = event.target;
                 let ruleItemBlock = link.closest('[data-ruleItemBlock]');
                 ruleItemBlock.remove();
+            }
+
+            if (event.target.hasAttribute("data-updateObjectiveSubmitButton") || event.target.closest("[data-updateObjectiveSubmitButton]")) {
+                let form = event.target.closest('[data-updateObjectiveForm]');
+                let actionUrl = $(form).attr('action');
+
+                const formData = new FormData(form);
+                await fetch(actionUrl,
+                    {
+                        method: 'POST',
+                        body: new URLSearchParams(formData)
+                    }).then(async function (response) {
+                        let data = await response.text();
+                        var parser = new DOMParser();
+                        var responseHtml = parser.parseFromString(data, "text/html");
+                        let isValidValue = responseHtml.querySelector('#objective-update-modal-modelState').value;
+                        let modalContent = document.getElementById('objective-update-modal-content');
+                        modalContent.innerHTML = data;
+                        let isValid = isValidValue === 'True';
+
+                        if (isValid) {
+                            $('#objective-update-modal').modal('hide');
+                        }
+
+                        let sortingForm = document.getElementById("sortForm");
+                        let formData = new FormData(sortingForm);
+                        sorting(formData);
+
+                    });
             }
         });
     </script>

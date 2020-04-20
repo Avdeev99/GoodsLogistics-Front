@@ -315,6 +315,9 @@
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
   </data>
+  <data name="RequestСonfirmation" xml:space="preserve">
+    <value>Request сonfirmation</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>This field is required.</value>
   </data>
@@ -336,11 +339,17 @@
   <data name="SelectOffice" xml:space="preserve">
     <value>Select office</value>
   </data>
+  <data name="SelectProvider" xml:space="preserve">
+    <value>Select provider</value>
+  </data>
   <data name="SelectRegion" xml:space="preserve">
     <value>Select region</value>
   </data>
   <data name="SendRequest" xml:space="preserve">
     <value>Send request</value>
+  </data>
+  <data name="SendRequestConfirmationMessage" xml:space="preserve">
+    <value>Are you sure you want to send request on executing this order?</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>

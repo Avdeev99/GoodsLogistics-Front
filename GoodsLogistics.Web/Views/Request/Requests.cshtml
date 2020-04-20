@@ -16,7 +16,7 @@
             <div class="col-lg-8" id="requests-holder">
                 @foreach (var request in Model)
                 {
-                    <div class="col-lg-6 notRespondRequest_holder">
+                    <div class="notRespondRequest_holder">
                         <div class="notRespondRequest_item">
 
                             <form data-requestForm="requestForm" action="@Url.Action("", "")" method="post">
@@ -42,7 +42,7 @@
                                     <div class="col-lg-6">
                                         <div class="row">
                                             <div class="col-lg-8">
-                                                
+
                                             </div>
                                             <div class="col-lg-4">
                                                 <button type="button" class="button" data-objectiveDetails="objectiveDetails">
@@ -63,3 +63,46 @@
     </div>
 </section>
 
+<!-- Details Modal -->
+<div class="modal fade" id="objective-details-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content objective-modal" id="objective-details-modal-content">
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/momentMin.js"></script>
+    <script src="~/js/datePicker.js"></script>
+    <script src="~/js/priceRange.js"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+
+    @*Get modals*@
+    <script>
+        let requestsHolder = document.getElementById('requests-holder');
+        requestsHolder.addEventListener('click', async function (event) {
+            if (event.target.hasAttribute("data-objectiveDetails") || event.target.closest("[data-objectiveDetails]")) {
+                let button = event.target;
+                let form = button.closest('[data-requestForm]');
+                let id = form.querySelector('[data-objectiveId]').value;
+                let url = '/Objective/GetObjectiveForProvidersById?objectiveId=' + id;
+
+                await fetch(url,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(async function (response) {
+                        let content = await response.text();
+                        let modalContent = document.getElementById('objective-details-modal-content');
+                        modalContent.innerHTML = content;
+                        $('#objective-details-modal').modal('show');
+                    });
+            }
+        });
+    </script>
+}

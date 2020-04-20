@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using GoodsLogistics.Models.DTO;
 using GoodsLogistics.Models.DTO.Objective;
@@ -16,6 +17,12 @@ namespace GoodsLogistics.Automapper.Profiles
 
             CreateMap<ObjectiveCreateRequestViewModel, ObjectiveModel>()
                 .ForMember(dest => dest.Rules, m => m.MapFrom(src => GetRules(src.Rules)));
+
+            CreateMap<ObjectiveModel, ObjectiveUpdateViewModel>()
+                .ForMember(dest => dest.Rules, m => m.MapFrom(src => GetRules(src.Rules)));
+
+            CreateMap<ObjectiveUpdateViewModel, ObjectiveUpdateRequestModel>()
+                .ForMember(dest => dest.Rules, m => m.MapFrom(src => GetRules(src.Rules)));
         }
 
         private List<RuleModel> GetRules(List<string> rules)
@@ -30,6 +37,24 @@ namespace GoodsLogistics.Automapper.Profiles
             foreach (var item in rules)
             {
                 var rule = new RuleModel(item);
+                result.Add(rule);
+            }
+
+            return result;
+        }
+
+        private List<string> GetRules(List<RuleModel> rules)
+        {
+            var result = new List<string>();
+
+            if (rules == null)
+            {
+                return result;
+            }
+
+            foreach (var item in rules)
+            {
+                var rule = item.Content;
                 result.Add(rule);
             }
 

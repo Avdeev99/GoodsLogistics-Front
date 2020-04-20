@@ -115,7 +115,8 @@ namespace GoodsLogistics.Web.Controllers
 
         public async Task<IActionResult> GetAllByCompanyIdViewResult(string companyId)
         {
-            var serviceResponse = await _officeService.GetOfficesByCompanyId(companyId);
+            var requestId = companyId ?? User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var serviceResponse = await _officeService.GetOfficesByCompanyId(requestId);
             if (!serviceResponse.IsSuccess)
             {
                 return null;

@@ -26,7 +26,8 @@ namespace GoodsLogistics.Web.Controllers
 
         public async Task<IActionResult> GetAllByCompanyId(string companyId)
         {
-            var serviceResponse = await _requestService.GetRequestsByCompanyId(companyId);
+            var requestId = companyId ?? User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var serviceResponse = await _requestService.GetRequestsByCompanyId(requestId);
             if (!serviceResponse.IsSuccess)
             {
                 return null;
