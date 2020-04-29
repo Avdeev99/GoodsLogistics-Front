@@ -77,6 +77,6 @@
     <button type="button" class="btn btn-secondary" data-dismiss="modal">@Resources.Close</button>
     <form action="@Url.Action("Create", "Request")" method="post">
         <input type="hidden" value="@Model.ObjectiveId" id="confirmation-request-modal-hidden-objectiveId" name="objectiveId" />
-        <button type="submit" class="btn btn-primary">@Resources.SendRequest</button>
+        <button type="submit" class="btn btn-primary" id="objective-details-modal-send-request-button">@Resources.SendRequest</button>
     </form>
 </div>

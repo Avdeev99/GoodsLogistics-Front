@@ -123,6 +123,9 @@
   <data name="AddRule" xml:space="preserve">
     <value>AddRule</value>
   </data>
+  <data name="AdminPanel" xml:space="preserve">
+    <value>Admin panel</value>
+  </data>
   <data name="Advantages" xml:space="preserve">
     <value>ADVANTAGES</value>
   </data>
@@ -132,8 +135,14 @@
   <data name="BackToOfficeList" xml:space="preserve">
     <value>Back To Office List</value>
   </data>
+  <data name="BackUpWasCreatedSuccessfully" xml:space="preserve">
+    <value>Back up was created successfully</value>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Change password</value>
+  </data>
+  <data name="ChooseTheBestOne" xml:space="preserve">
+    <value>Choose The Best One</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
@@ -161,6 +170,9 @@
   </data>
   <data name="Customer" xml:space="preserve">
     <value>Customer</value>
+  </data>
+  <data name="DatabaseBackUp" xml:space="preserve">
+    <value>DatabaseBackUp</value>
   </data>
   <data name="DeletionСonfirmation" xml:space="preserve">
     <value>Deletion confirmation</value>
@@ -314,6 +326,15 @@
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
+  </data>
+  <data name="RequestStatusAccepted" xml:space="preserve">
+    <value>Request was accepted</value>
+  </data>
+  <data name="RequestStatusDeclined" xml:space="preserve">
+    <value>Request was declined</value>
+  </data>
+  <data name="RequestStatusNone" xml:space="preserve">
+    <value>Waiting for respond...</value>
   </data>
   <data name="RequestСonfirmation" xml:space="preserve">
     <value>Request сonfirmation</value>

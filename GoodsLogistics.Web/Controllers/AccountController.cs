@@ -20,6 +20,7 @@ namespace GoodsLogistics.Web.Controllers
     public class AccountController : Controller
     {
         private readonly IOptions<CookieAuthOptions> _cookieAuthOptions;
+        private readonly IAccountService _accountService;
         private readonly IUserCompanyService _userCompanyService;
         private readonly ICookiesService _cookiesService;
         private readonly IAuthService _authService;
@@ -29,13 +30,15 @@ namespace GoodsLogistics.Web.Controllers
             IUserCompanyService userCompanyService, 
             ICookiesService cookiesService, IMapper mapper, 
             IAuthService authService,
-            IOptions<CookieAuthOptions> cookieAuthOptions)
+            IOptions<CookieAuthOptions> cookieAuthOptions, 
+            IAccountService accountService)
         {
             _userCompanyService = userCompanyService;
             _cookiesService = cookiesService;
             _mapper = mapper;
             _authService = authService;
             _cookieAuthOptions = cookieAuthOptions;
+            _accountService = accountService;
         }
 
         public async Task<IActionResult> Index(string status)
@@ -124,6 +127,21 @@ namespace GoodsLogistics.Web.Controllers
             await HttpContext.SignOutAsync();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult AdminPanel()
+        {
+            return View("AdminPanel");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DatabaseBackUp()
+        {
+            await _accountService.DatabaseBackUp();
+            ViewBag.Status = Resources.BackUpWasCreatedSuccessfully;
+
+            return View("AdminPanel", ViewBag.Status);
         }
     }
 }

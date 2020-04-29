@@ -57,7 +57,7 @@ namespace GoodsLogistics.Web.Controllers
                 return View("Edit", officeViewModel);
             }
 
-            return RedirectToAction("GetAll");
+            return RedirectToAction("GetAllByCompanyIdViewResult");
         }
 
         public async Task<IActionResult> Details(string key)
@@ -91,14 +91,14 @@ namespace GoodsLogistics.Web.Controllers
                 return View("Edit", officeViewModel);
             }
 
-            return RedirectToAction("GetAll");
+            return RedirectToAction("GetAllByCompanyIdViewResult");
         }
 
         public async Task<IActionResult> Delete(string key)
         {
             await _officeService.DeleteOffice(key);
 
-            return RedirectToAction("GetAll");
+            return RedirectToAction("GetAllByCompanyIdViewResult");
         }
 
         public async Task<string> GetAllByCompanyId(string companyId)

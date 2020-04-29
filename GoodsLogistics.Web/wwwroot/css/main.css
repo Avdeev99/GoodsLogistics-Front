@@ -23,6 +23,10 @@ li {
     text-align: right;
 }
 
+.tal {
+    text-align: left;
+}
+
 .tac {
     text-align: center;
 }

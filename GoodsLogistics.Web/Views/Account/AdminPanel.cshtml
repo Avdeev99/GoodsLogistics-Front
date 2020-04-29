@@ -1,0 +1,31 @@
+﻿@using GoodsLogistics.Localization.Resources
+
+@{
+    ViewData["Title"] = "AdminPanel";
+}
+
+<section>
+    <div class="container">
+        <div class="row account_holder">
+            <div class="col-lg-4 account_menu_holder">
+                @Html.Partial("_AccountMenuPartial")
+            </div>
+            <div class="col-lg-8 account_holder_content">
+                <h4>@Resources.AdminPanel</h4>
+                <br />
+
+                <div class="form-group">
+                        <div>@Resources.DatabaseBackUp:</div>
+                        <br />
+                        @using (Html.BeginForm("DatabaseBackUp", "Account", FormMethod.Post))
+                        {
+                            <button type="submit" class="button">@Resources.Submit</button>
+                        }
+                        <br />
+                        <div class="success_status">@ViewBag.Status</div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</section>

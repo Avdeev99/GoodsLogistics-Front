@@ -1,4 +1,5 @@
 ﻿@using GoodsLogistics.Localization.Resources
+@using GoodsLogistics.Models.Enums
 @model List<GoodsLogistics.ViewModels.DTO.RequestViewModel>
 
 @{
@@ -38,12 +39,27 @@
                                     <div class="col-lg-6 tar">@Resources.Price: @request.Objective.Price</div>
                                 </div>
                                 <div class="notRespondRequest_item_description_line"></div>
-                                <div class="row respond_button_holder d-flex justify-content-end" data-requestButtonHolder="requestButtonHolder">
+                                <div class="row respond_button_holder" data-requestButtonHolder="requestButtonHolder">
+                                    <div class="col-lg-6 d-flex justify-content-start">
+                                        @if (request.Status.Equals(RequestStatus.Declined))
+                                        {
+                                            <div>@Resources.RequestStatusDeclined</div>
+                                        }
+                                        else if (request.Status.Equals(RequestStatus.Accepted))
+                                        {
+                                            <div> @Resources.RequestStatusAccepted</div>
+                                        }
+                                        else if (request.Status.Equals(RequestStatus.None))
+                                        {
+                                            <div>@Resources.RequestStatusNone</div>
+                                        }
+                                    </div>
                                     <div class="col-lg-6">
                                         <div class="row">
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-4">
 
                                             </div>
+                                            <div class="col-lg-4"></div>
                                             <div class="col-lg-4">
                                                 <button type="button" class="button" data-objectiveDetails="objectiveDetails">
                                                     <i class="fas fa-info-circle"></i>
@@ -98,8 +114,14 @@
                         }
                     }).then(async function (response) {
                         let content = await response.text();
+                        var parser = new DOMParser();
+                        var responseHtml = parser.parseFromString(content, "text/html");
+                        //let requestButton = responseHtml.querySelector('#objective-details-modal-send-request-button');
+                        //requestButton.remove();
                         let modalContent = document.getElementById('objective-details-modal-content');
                         modalContent.innerHTML = content;
+                        let requestButton = document.getElementById('objective-details-modal-send-request-button');
+                        requestButton.remove();
                         $('#objective-details-modal').modal('show');
                     });
             }

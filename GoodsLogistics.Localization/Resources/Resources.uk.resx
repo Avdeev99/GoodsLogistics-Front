@@ -123,6 +123,9 @@
   <data name="AddRule" xml:space="preserve">
     <value>Додати правило</value>
   </data>
+  <data name="AdminPanel" xml:space="preserve">
+    <value>Адмін панель</value>
+  </data>
   <data name="Advantages" xml:space="preserve">
     <value>ПЕРЕВАГИ</value>
   </data>
@@ -132,8 +135,14 @@
   <data name="BackToOfficeList" xml:space="preserve">
     <value>Повернутися до Списку Офісів</value>
   </data>
+  <data name="BackUpWasCreatedSuccessfully" xml:space="preserve">
+    <value>Копія бази даних була створена успішно</value>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Змінити пароль</value>
+  </data>
+  <data name="ChooseTheBestOne" xml:space="preserve">
+    <value>Обирай Найкраще</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>Місто</value>
@@ -161,6 +170,9 @@
   </data>
   <data name="Customer" xml:space="preserve">
     <value>Замовник</value>
+  </data>
+  <data name="DatabaseBackUp" xml:space="preserve">
+    <value>Створити копію бази даних</value>
   </data>
   <data name="DeletionConfirmation" xml:space="preserve">
     <value>Підтвердження видалення</value>
@@ -235,7 +247,7 @@
     <value>Навза товару</value>
   </data>
   <data name="GoodWeight" xml:space="preserve">
-    <value>Вага твоару</value>
+    <value>Вага товару</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>ГОЛОВНА</value>
@@ -314,6 +326,15 @@
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Вилучити</value>
+  </data>
+  <data name="RequestStatusAccepted" xml:space="preserve">
+    <value>Запит прийнято</value>
+  </data>
+  <data name="RequestStatusDeclined" xml:space="preserve">
+    <value>Запит відхилено</value>
+  </data>
+  <data name="RequestStatusNone" xml:space="preserve">
+    <value>Чекає на відповідь...</value>
   </data>
   <data name="RequestСonfirmation" xml:space="preserve">
     <value>Підтвердження заявки</value>

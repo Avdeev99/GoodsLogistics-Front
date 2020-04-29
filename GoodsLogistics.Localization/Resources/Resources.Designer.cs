@@ -79,6 +79,15 @@ namespace GoodsLogistics.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin panel.
+        /// </summary>
+        public static string AdminPanel {
+            get {
+                return ResourceManager.GetString("AdminPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ADVANTAGES.
         /// </summary>
         public static string Advantages {
@@ -106,11 +115,29 @@ namespace GoodsLogistics.Localization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back up was created successfully.
+        /// </summary>
+        public static string BackUpWasCreatedSuccessfully {
+            get {
+                return ResourceManager.GetString("BackUpWasCreatedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change password.
         /// </summary>
         public static string ChangePassword {
             get {
                 return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose The Best One.
+        /// </summary>
+        public static string ChooseTheBestOne {
+            get {
+                return ResourceManager.GetString("ChooseTheBestOne", resourceCulture);
             }
         }
         
@@ -192,6 +219,15 @@ namespace GoodsLogistics.Localization.Resources {
         public static string Customer {
             get {
                 return ResourceManager.GetString("Customer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DatabaseBackUp.
+        /// </summary>
+        public static string DatabaseBackUp {
+            get {
+                return ResourceManager.GetString("DatabaseBackUp", resourceCulture);
             }
         }
         
@@ -651,6 +687,33 @@ namespace GoodsLogistics.Localization.Resources {
         public static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Request was accepted.
+        /// </summary>
+        public static string RequestStatusAccepted {
+            get {
+                return ResourceManager.GetString("RequestStatusAccepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Request was declined.
+        /// </summary>
+        public static string RequestStatusDeclined {
+            get {
+                return ResourceManager.GetString("RequestStatusDeclined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waiting for respond....
+        /// </summary>
+        public static string RequestStatusNone {
+            get {
+                return ResourceManager.GetString("RequestStatusNone", resourceCulture);
             }
         }
         

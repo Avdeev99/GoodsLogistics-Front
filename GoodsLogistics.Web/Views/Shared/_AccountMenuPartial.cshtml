@@ -7,12 +7,17 @@
 
         @if (User.IsInRole("Customer"))
         {
-            <div class="account_menu_item">@Html.ActionLink(Resources.Offices, "GetAllByCompanyIdViewResult", "Office", new { id = User.FindFirst(ClaimTypes.NameIdentifier).Value})</div>
+            <div class="account_menu_item">@Html.ActionLink(Resources.Offices, "GetAllByCompanyIdViewResult", "Office", new { id = User.FindFirst(ClaimTypes.NameIdentifier).Value })</div>
         }
 
         @if (User.IsInRole("Provider"))
         {
-            <div class="account_menu_item">@Html.ActionLink(Resources.Orders, "GetAllByCompanyId", "Request", new { id = User.FindFirst(ClaimTypes.NameIdentifier).Value})</div>
+            <div class="account_menu_item">@Html.ActionLink(Resources.Orders, "GetAllByCompanyId", "Request", new { id = User.FindFirst(ClaimTypes.NameIdentifier).Value })</div>
+        }
+
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="account_menu_item">@Html.ActionLink(Resources.AdminPanel, "AdminPanel", "Account", new { id = User.FindFirst(ClaimTypes.NameIdentifier).Value })</div>
         }
 
         <div class="account_menu_item">
